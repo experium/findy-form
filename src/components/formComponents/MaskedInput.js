@@ -40,7 +40,7 @@ export const PhoneInput = withFieldWrapper(props => {
             className={`${styles.formInput} input`}
             disabled={disabled}
             country={browserLanguage}
-            onlyCountries={['ru', 'by', 'ua', 'kz', 'uz', 'tj', 'lv', 'lt', 'ee']}
+            preferredCountries={['ru', 'by', 'ua', 'kz', 'uz', 'tj', 'lv', 'lt', 'ee']}
             localization={language === 'en' ? undefined : ru}
             value={value}
             placeholder={placeholder}
