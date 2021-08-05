@@ -16,7 +16,7 @@ export const TRANSLATIONS = {
             'recordVideo': 'Record video',
             'takePhoto': 'Take a photo',
             'opdFormAccept': 'Accept',
-            'opdLabel': 'I am agree with',
+            'opdLabel': 'I agree with',
             'opdLink': 'personal data processing',
             'opdOffertaLabel': 'I accept the terms',
             'opdOffertaLink': 'public offer',
