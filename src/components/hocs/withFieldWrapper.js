@@ -105,7 +105,7 @@ export default WrappedComponent =>
                         { extra }
                     </label>
                 }
-                <div>
+                <div id={`field-${name}`}>
                     <FormContext.Consumer>
                         { ({ disabled, htmlAttrs }) => (
                             <WrappedComponent

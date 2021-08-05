@@ -5,6 +5,7 @@ import FlagedInput from 'react-phone-input-2';
 import ru from 'react-phone-input-2/lang/ru.json';
 import 'react-phone-input-2/lib/style.css';
 
+import '../../styles/masked-input.css';
 import styles from '../../styles/index.module.css';
 
 import withFieldWrapper from '../hocs/withFieldWrapper';
@@ -41,6 +42,7 @@ export const PhoneInput = withFieldWrapper(props => {
         <FlagedInput
             key={language === 'en' ? 'en' : 'ru'}
             id={name}
+            name={name}
             className={`${styles.formInput} input`}
             disabled={disabled}
             country={languages[language] || language}
