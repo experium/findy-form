@@ -38,7 +38,7 @@ const languages = {
 export const PhoneInput = withFieldWrapper(props => {
     const { input: { value, name }, onChange, disabled, placeholder, language } = props;
 
-    return !path(['settings', 'international'], props) ? (
+    return path(['settings', 'international'], props) ? (
         <FlagedInput
             key={language === 'en' ? 'en' : 'ru'}
             id={name}
