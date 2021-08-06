@@ -3,6 +3,7 @@
     padding-left: 0 !important;
 }
 .react-tel-input .flag-dropdown li {
+    padding: 7px 9px !important;
     list-style-type: none;
 }
 .react-tel-input .flag-dropdown li:before {
