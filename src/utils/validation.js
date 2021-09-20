@@ -166,7 +166,7 @@ const rules = {
                 return value.length <= maxLength;
             }
         }),
-    personalDataAgreement: (field, { htmlOpd }) => htmlOpd ? yup.string() : yup.boolean(),
+    personalDataAgreement: (field, { htmlOpd, opdSettings }) => htmlOpd || path(['useConstructor'], opdSettings) ? yup.string() : yup.boolean(),
     boolean: field => yup.boolean(),
     choice: field => path(['settings', 'multiple'], field) ? yup.array() : yup.string(),
     file: (field, { allowFileExtensions }) => yup.mixed().test({

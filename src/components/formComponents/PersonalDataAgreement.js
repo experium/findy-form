@@ -2,7 +2,7 @@ import React, { Component, Fragment } from 'react';
 import Modal from 'react-responsive-modal';
 import { withTranslation } from 'react-i18next';
 import { FormSpy } from 'react-final-form';
-import { path, pathOr } from 'ramda';
+import { filter, find, path, pathOr, pick, toLower } from 'ramda';
 
 import 'rc-checkbox/assets/index.css';
 import 'react-responsive-modal/styles.css';
@@ -12,6 +12,34 @@ import styles from '../../styles/index.module.css';
 import HtmlOpdForm from './HtmlOpdForm';
 import { FormContext } from '../../context/FormContext';
 import { getAttrs } from '../../utils/attrs';
+
+const getConstructorOpd = opdSettings => {
+    const opdConstructor = pathOr([], ['data', 'opdConstructor'], opdSettings);
+
+    const text = opdConstructor.reduce((res, cur) => {
+        switch (cur.type) {
+            case 'text':
+                return `${res + cur.text} `;
+            case 'question':
+                return `${res}<input name="${cur.question}" placeholder="${cur.placeholder ? toLower(cur.placeholder) : ''}" type="text" ${cur.required ? 'required' : ''} /> `;
+            case 'link':
+                return `${res}<a href="${cur.link}" target="_blank">${cur.text}</a> `;
+            case 'formated':
+                return res + cur.text;
+            default:
+                return res;
+        }
+    }, '');
+
+    return `<div>
+        ${text}
+        ${path(['purposeCheckbox', 'active'], opdSettings) ? `<p><label><input name="opdPurpose" type="checkbox" data-separate-field="opdPurpose" ${path(['purposeCheckbox', 'required'], opdSettings) ? 'required' : ''} />${path(['purposeCheckbox', 'label'], opdSettings) || 'я выражаю согласие на обработку персональных данных для цели рассмотрения вопроса о моем трудоустройстве в Компании и включения в кадровый резерв Компании'}</label></p>` : ''}
+        ${path(['acceptCheckbox', 'active'], opdSettings) ? `<p><label><input name="opdAccept" type="checkbox" data-separate-field="opdAccept" ${path(['acceptCheckbox', 'required'], opdSettings) ? 'required' : ''} />${path(['acceptCheckbox', 'label'], opdSettings) || 'я выражаю согласие на передачу моих персональных данных в организацию'}</label></p>` : ''}
+        ${path(['transmissionCheckbox', 'active'], opdSettings) ? `<p><label><input name="transmission" type="checkbox" data-separate-field="transmission" ${path(['transmissionCheckbox', 'required'], opdSettings) ? 'required' : ''} />${path(['transmissionCheckbox', 'label'], opdSettings) || 'я выражаю согласие на трансграничную передачу моих персональных данных'}</label></p>` : ''}
+        ${path(['mailingCheckbox', 'active'], opdSettings) ? `<p><label><input name="mailing" type="checkbox" data-separate-field="mailing" ${path(['mailingCheckbox', 'required'], opdSettings) ? 'required' : ''} />${path(['mailingCheckbox', 'label'], opdSettings) || 'я выражаю согласие на получение рассылки материалов рекламного и/или информационного характера посредством SMS-сервисов, Viber, WhatsApp, Telegram, Skype и других месcенджеров, электронной почты и т.д.'}</label></p>` : ''}
+        ${filter(i => !!i.show, pathOr([], ['data', 'checkboxes'], opdSettings)).reduce((res, cur, index) => `${res}<p><label><input name="checkbox-${index}" type="checkbox" ${cur.required ? 'required' : ''} />${cur.label}</label></p>`, '')}
+    </div>`;
+};
 
 class PersonalDataAgreementComponent extends Component {
     state = {
@@ -92,20 +120,39 @@ class PersonalDataAgreementComponent extends Component {
         this.setState({ openedHtml: false });
     }
 
+    getOpdValues = formProps => {
+        const { opdSettings, getOpdValues } = this.props;
+
+        if (getOpdValues) {
+            return getOpdValues(formProps);
+        }
+
+        if (path(['useConstructor'], opdSettings)) {
+            return pick(filter(field => find(i => i.type === 'question' && i.question === field, pathOr([], ['data', 'opdConstructor'], opdSettings)), [
+                'firstName', 'lastName', 'middleName', 'phone', 'email', 'district', 'address', 'webpage', 'messanger', 'birthDate'
+            ]), formProps.values);
+        }
+
+        return {};
+    }
+
     render() {
+        const { opdSettings } = this.props;
+        const constructorOpd = path(['useConstructor'], opdSettings) ? getConstructorOpd(opdSettings) : null;
+
         return <FormContext.Consumer>{ ({ htmlAttrs }) => (
             <Fragment>
                 <Checkbox
                     id={'opdCheckbox'}
                     {...this.props}
-                    onValueChange={this.props.htmlOpd ? this.onChange : null}
+                    onValueChange={(this.props.htmlOpd || constructorOpd) ? this.onChange : null}
                     options={[{
                         value: true,
                         label: this.getLabel()
                     }]}
                     htmlAttrs={getAttrs('opdCheckbox', htmlAttrs)}
                 />
-                { this.props.htmlOpd &&
+                { (this.props.htmlOpd || constructorOpd) &&
                     <Modal
                         open={this.state.openedHtml}
                         onClose={this.closeHtml}
@@ -124,9 +171,10 @@ class PersonalDataAgreementComponent extends Component {
                                     onClose={this.closeHtml}
                                     value={this.props.input.value}
                                     formProps={formProps}
-                                    getOpdValues={() => this.props.getOpdValues && this.props.getOpdValues(formProps)}
+                                    getOpdValues={() => this.getOpdValues(formProps)}
                                     htmlAttrs={htmlAttrs}
-                                    html={this.props.htmlOpd} />
+                                    html={this.props.htmlOpd || constructorOpd}
+                                    acceptBtn={path(['acceptButtonLabel'], opdSettings)} />
                             )}
                         </FormSpy>
                     </Modal>

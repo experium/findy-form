@@ -92,17 +92,15 @@ class HtmlOpdForm extends Component {
     }
 
     setValues = () => {
-        if (this.props.getOpdValues) {
-            const values = this.props.getOpdValues();
-            const inputs = this.form.querySelectorAll('input');
+        const values = this.props.getOpdValues();
+        const inputs = this.form.querySelectorAll('input');
 
-            forEach(input => {
-                const value = path([input.name], values);
-                if (value) {
-                    input.setAttribute('value', trim(`${value || ''}`));
-                }
-            }, inputs);
-        }
+        forEach(input => {
+            const value = path([input.name], values);
+            if (value) {
+                input.setAttribute('value', trim(`${value || ''}`));
+            }
+        }, inputs);
     }
 
     scrollToInvalid = () => {
@@ -164,7 +162,7 @@ class HtmlOpdForm extends Component {
     }
 
     render() {
-        const { formProps, t, htmlAttrs, onClose } = this.props;
+        const { formProps, t, htmlAttrs, onClose, acceptBtn } = this.props;
         const html = this.state.value || this.props.html;
 
         return <Fragment>
@@ -179,7 +177,7 @@ class HtmlOpdForm extends Component {
                     <div className={cx('opd-html-form', { submitted: this.state.submitted })} dangerouslySetInnerHTML={{ __html: html }} />
 
                     <button className={`${styles.formBtn} form-button`} type='button' onClick={() => this.onSubmit(formProps)} {...getAttrs('opdAccept', htmlAttrs)}>
-                        {t('opdFormAccept')}
+                        { acceptBtn || t('opdFormAccept') }
                     </button>
                 </form>
             </div>
