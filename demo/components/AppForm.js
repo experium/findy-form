@@ -145,7 +145,7 @@ class AppForm extends Component {
         const { data, match, history: { location: { search }}} = this.props;
         const vacancy = pathOr({}, ['vacancy'], data);
         const companyCaptcha = path(['company', 'companySettings', 'captcha', 'landings'], vacancy);
-        const companyPda = path(['company', 'companySettings', 'pda'], vacancy);
+        const companyPda = path(['company', 'pdaSettings', 'text'], vacancy);
         const searchPath = qs.parse(search, { ignoreQueryPrefix: true });
         const components = has('custom', searchPath) ? customComponents : {};
         const htmlOpd = has('htmlOpd', searchPath) ? htmlOpdText2 : null;
@@ -210,7 +210,7 @@ class AppForm extends Component {
                                 }}
                                 company={vacancy.company.id}
                                 opd={vacancy.pda || companyPda}
-                                opdSettings={pick(['translations', 'pdaLabelStart', 'pdaLabelEnd', 'pdaLabelLink', 'pdaLinkType', 'pdaLink'], pathOr({}, ['company', 'companySettings'], vacancy))}
+                                opdSettings={pick(['translations', 'labelStart', 'labelEnd', 'labelLink', 'linkType', 'link'], pathOr({}, ['company', 'pdaSettings'], vacancy))}
                                 postFileUrl={`${POST_FILE}/${vacancy.id}`}
                                 getFileUrl={id => `${GET_FILE}/${id}`}
                                 language={this.state.language}

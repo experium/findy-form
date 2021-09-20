@@ -1,7 +1,7 @@
-export const domain = 'dev';
+export const domain = process.env.DOMAIN || 'dev';
 export const company = 'heliosoft';
 
-export const URL = `https://jobot.${domain}.experium.net/api/graphql`;
-export const API_URL = `https://jobot.${domain}.experium.net`;
-export const POST_FILE = `https://jobot.${domain}.experium.net/api/landing/public/file`;
-export const GET_FILE = `https://jobot.${domain}.experium.net/api/file`;
+export const URL = `https://findy.${domain}.experium.net/api/graphql`;
+export const API_URL = `https://findy.${domain}.experium.net`;
+export const POST_FILE = `https://findy.${domain}.experium.net/api/landing/public/file`;
+export const GET_FILE = `https://findy.${domain}.experium.net/api/file`;

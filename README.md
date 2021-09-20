@@ -1,10 +1,10 @@
-# Jobot form
+# Findy form
 
 ## Demo
 
-[https://experium.github.io/jobot-forms/](https://experium.github.io/jobot-forms/)
+[https://experium.github.io/findy-forms/](https://experium.github.io/findy-forms/)
 
-[https://experium.github.io/jobot-forms/form/:vacancyId](https://experium.github.io/jobot-forms/form/)
+[https://experium.github.io/findy-forms/form/:vacancyId](https://experium.github.io/findy-forms/form/)
 
 ## `<Form />`
 

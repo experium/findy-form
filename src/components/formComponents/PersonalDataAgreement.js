@@ -41,10 +41,10 @@ class PersonalDataAgreementComponent extends Component {
             className: opd ? styles.formLink : styles.withoutOpd,
             onClick: this.open
         };
-        const linkText = pathOr(pathOr(t('opdLink'), ['pdaLabelLink'], opdSettings), ['translations', 'pdaLabelLink', language], opdSettings);
-        const link = pathOr(path(['pdaLink'], opdSettings), ['translations', 'pdaLink', language], opdSettings);
-        const opdText = pathOr(opd, ['translations', 'pda', language], opdSettings);
-        const opdType = pathOr('modal', ['pdaLinkType'], opdSettings);
+        const linkText = pathOr(pathOr(t('opdLink'), ['labelLink'], opdSettings), ['translations', 'labelLink', language], opdSettings);
+        const link = pathOr(path(['link'], opdSettings), ['translations', 'link', language], opdSettings);
+        const opdText = pathOr(opd, ['translations', 'text', language], opdSettings);
+        const opdType = pathOr('modal', ['linkType'], opdSettings);
 
         return <span>
             { renderOpdLabel ? renderOpdLabel(modalLinkProps) :
@@ -52,14 +52,14 @@ class PersonalDataAgreementComponent extends Component {
                     label
                 ) : (
                     <Fragment>
-                        { pathOr(pathOr(t('opdLabel'), ['pdaLabelStart'], opdSettings), ['translations', 'pdaLabelStart', language], opdSettings) }
+                        { pathOr(pathOr(t('opdLabel'), ['labelStart'], opdSettings), ['translations', 'labelStart', language], opdSettings) }
                         { ' ' }
                         { opdType === 'modal' ?
                             <span {...modalLinkProps}>{ linkText }</span> :
                             <a href={`//${link}`} target='_blank'>{ linkText }</a>
                         }
                         { ' ' }
-                        { pathOr(pathOr('.', ['pdaLabelEnd'], opdSettings), ['translations', 'pdaLabelEnd', language], opdSettings) }
+                        { pathOr(pathOr('.', ['labelEnd'], opdSettings), ['translations', 'labelEnd', language], opdSettings) }
                     </Fragment>
                 )
             }

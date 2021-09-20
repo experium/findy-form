@@ -12,6 +12,7 @@ module.exports = {
     plugins: [
         new webpack.DefinePlugin({
             'process.env': {
+                'DOMAIN': process.env.DOMAIN,
                 'NODE_ENV': '"development"',
                 'RECAPTCHA': '"6LeGFW0aAAAAADzkbozlVnpbROvKEBMwc-d4zkMx"'
             }

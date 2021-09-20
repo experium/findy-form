@@ -15,7 +15,7 @@ import { getFileErrorText } from '../../utils/file';
 import { TYPES } from '../../constants/allowFileExtensions';
 import { checkFileType, getFileTypeMessage } from '../../utils/validation';
 
-const JOBOT_FILE_TYPES = {
+const FILE_TYPES = {
     image: 'image',
     video: 'video',
     audio: 'audio',
@@ -23,21 +23,21 @@ const JOBOT_FILE_TYPES = {
 };
 
 const MEDIA = {
-    [JOBOT_FILE_TYPES.audio]: { audio: true },
-    [JOBOT_FILE_TYPES.video]: { audio: true, video: true },
-    [JOBOT_FILE_TYPES.image]: { video: true }
+    [FILE_TYPES.audio]: { audio: true },
+    [FILE_TYPES.video]: { audio: true, video: true },
+    [FILE_TYPES.image]: { video: true }
 };
 
 const MODAL_CONTENT = {
-    [JOBOT_FILE_TYPES.audio]: AudioFile,
-    [JOBOT_FILE_TYPES.video]: VideoFile,
-    [JOBOT_FILE_TYPES.image]: ImageFile
+    [FILE_TYPES.audio]: AudioFile,
+    [FILE_TYPES.video]: VideoFile,
+    [FILE_TYPES.image]: ImageFile
 };
 
 const BTN_TEXT = {
-    [JOBOT_FILE_TYPES.audio]: 'recordAudio',
-    [JOBOT_FILE_TYPES.video]: 'recordVideo',
-    [JOBOT_FILE_TYPES.image]: 'takePhoto'
+    [FILE_TYPES.audio]: 'recordAudio',
+    [FILE_TYPES.video]: 'recordVideo',
+    [FILE_TYPES.image]: 'takePhoto'
 };
 
 class File extends Component {
@@ -208,7 +208,7 @@ class File extends Component {
         const isBlob = fileName === 'blob';
 
         switch (type) {
-            case JOBOT_FILE_TYPES.image:
+            case FILE_TYPES.image:
                 return (
                     <div>
                         { isBlob ? (
@@ -216,7 +216,7 @@ class File extends Component {
                         ) : fileName}
                     </div>
                 );
-            case JOBOT_FILE_TYPES.video:
+            case FILE_TYPES.video:
                 return (
                     <div>
                         { isBlob ? (
@@ -226,7 +226,7 @@ class File extends Component {
                         ) : fileName}
                     </div>
                 );
-            case JOBOT_FILE_TYPES.audio:
+            case FILE_TYPES.audio:
                 return (
                     <div>
                         { isBlob ? (

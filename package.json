@@ -1,5 +1,5 @@
 {
-  "name": "@experium/jobot-form",
+  "name": "@experium/findy-form",
   "version": "1.1.0",
   "main": "./lib/index.js",
   "publishConfig": {
