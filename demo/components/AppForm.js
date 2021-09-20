@@ -1,6 +1,6 @@
 import React, { Component, useState } from 'react';
 import { graphql, Mutation } from 'react-apollo';
-import { assocPath, compose, pathOr, path, has, pick } from 'ramda';
+import { assocPath, compose, pathOr, path, has } from 'ramda';
 import ReactSelect from 'rc-select';
 import qs from 'qs';
 import Modal from 'react-responsive-modal';
@@ -210,13 +210,12 @@ class AppForm extends Component {
                                 }}
                                 company={vacancy.company.id}
                                 opd={vacancy.pda || companyPda}
-                                opdSettings={pick(['translations', 'labelStart', 'labelEnd', 'labelLink', 'linkType', 'link'], pathOr({}, ['company', 'pdaSettings'], vacancy))}
+                                opdSettings={pathOr({}, ['company', 'pdaSettings'], vacancy)}
                                 postFileUrl={`${POST_FILE}/${vacancy.id}`}
                                 getFileUrl={id => `${GET_FILE}/${id}`}
                                 language={this.state.language}
                                 components={components}
                                 htmlOpd={htmlOpd}
-                                getOpdValues={htmlOpd ? getOpdValues : undefined}
                                 serverErrors={error}
                                 allowFileExtensions={allowFileExtensions}
                                 // initialValues={{
@@ -285,9 +284,9 @@ class AppForm extends Component {
                                 }}
                                 captcha={companyCaptcha}
                                 captchaSettings={captchaSettings}
-                                getOpdValues={({ values }) => ({
-                                    name: `${values.lastName || ''} ${values.firstName || ''} ${values.middleName || ''}`
-                                })}
+                                // getOpdValues={({ values }) => ({
+                                //     name: `${values.lastName || ''} ${values.firstName || ''} ${values.middleName || ''}`
+                                // })}
                                 updateOpdValuesOn={['lastName', 'firstName', 'middleName']}
                             />
                         }

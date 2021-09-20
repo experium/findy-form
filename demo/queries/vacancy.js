@@ -26,12 +26,35 @@ export const getVacancy = gql(`
                 },
                 pdaSettings {
                     text,
-                    translations,
                     labelStart,
                     labelEnd,
                     labelLink,
                     linkType,
-                    link
+                    link,
+                    translations,
+                    data,
+                    acceptButtonLabel,
+                    acceptCheckbox {
+                        required,
+                        active,
+                        label
+                    },
+                    purposeCheckbox {
+                        required,
+                        active,
+                        label
+                    },
+                    mailingCheckbox {
+                        required,
+                        active,
+                        label
+                    },
+                    transmissionCheckbox {
+                        required,
+                        active,
+                        label
+                    },
+                    useConstructor
                 }
             },
             formPreset {
