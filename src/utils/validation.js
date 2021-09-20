@@ -167,7 +167,13 @@ const rules = {
             }
         }),
     personalDataAgreement: (field, { htmlOpd, opdSettings }) => htmlOpd || path(['useConstructor'], opdSettings) ? yup.string() : yup.boolean(),
-    boolean: field => yup.boolean(),
+    boolean: field => {
+        return !field.required ? yup.boolean() : yup.mixed().test({
+            name: 'requiredBoolean',
+            message: i18n.t('errors.required'),
+            test: value => !!value,
+        });
+    },
     choice: field => path(['settings', 'multiple'], field) ? yup.array() : yup.string(),
     file: (field, { allowFileExtensions }) => yup.mixed().test({
         name: 'fileExtensions',
