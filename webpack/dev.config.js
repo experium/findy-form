@@ -12,7 +12,7 @@ module.exports = {
     plugins: [
         new webpack.DefinePlugin({
             'process.env': {
-                'DOMAIN': `"${process.env.DOMAIN}"`,
+                'DOMAIN': process.env.DOMAIN ? `"${process.env.DOMAIN}"` : undefined,
                 'NODE_ENV': '"development"',
                 'RECAPTCHA': '"6LeGFW0aAAAAADzkbozlVnpbROvKEBMwc-d4zkMx"'
             }
