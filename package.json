@@ -4,7 +4,7 @@
   "main": "./lib/index.js",
   "repository": {
     "type": "git",
-    "url": "https://github.com/experium/babel.git"
+    "url": "https://github.com/experium/findy-form.git"
   },
   "publishConfig": {
     "access": "public",
