@@ -13,8 +13,9 @@ import HtmlOpdForm from './HtmlOpdForm';
 import { FormContext } from '../../context/FormContext';
 import { getAttrs } from '../../utils/attrs';
 
-const getConstructorOpd = opdSettings => {
-    const opdConstructor = pathOr([], ['data', 'opdConstructor'], opdSettings);
+const getConstructorOpd = (opdSettings, language) => {
+    const opdConstructor = language && language !== 'ru' ? pathOr([], ['data', 'locale', language, 'opdConstructor'], opdSettings) : pathOr([], ['data', 'opdConstructor'], opdSettings);
+    const checkboxes = language && language !== 'ru' ? pathOr([], ['data', 'locale', language, 'checkboxes'], opdSettings) : pathOr([], ['data', 'checkboxes'], opdSettings);
 
     const text = opdConstructor.reduce((res, cur) => {
         switch (cur.type) {
@@ -37,7 +38,7 @@ const getConstructorOpd = opdSettings => {
         ${path(['acceptCheckbox', 'active'], opdSettings) ? `<p><label><input name="opdAccept" type="checkbox" data-separate-field="opdAccept" ${path(['acceptCheckbox', 'required'], opdSettings) ? 'required' : ''} />${path(['acceptCheckbox', 'label'], opdSettings) || 'я выражаю согласие на передачу моих персональных данных в организацию'}</label></p>` : ''}
         ${path(['transmissionCheckbox', 'active'], opdSettings) ? `<p><label><input name="transmission" type="checkbox" data-separate-field="transmission" ${path(['transmissionCheckbox', 'required'], opdSettings) ? 'required' : ''} />${path(['transmissionCheckbox', 'label'], opdSettings) || 'я выражаю согласие на трансграничную передачу моих персональных данных'}</label></p>` : ''}
         ${path(['mailingCheckbox', 'active'], opdSettings) ? `<p><label><input name="mailing" type="checkbox" data-separate-field="mailing" ${path(['mailingCheckbox', 'required'], opdSettings) ? 'required' : ''} />${path(['mailingCheckbox', 'label'], opdSettings) || 'я выражаю согласие на получение рассылки материалов рекламного и/или информационного характера посредством SMS-сервисов, Viber, WhatsApp, Telegram, Skype и других месcенджеров, электронной почты и т.д.'}</label></p>` : ''}
-        ${filter(i => !!i.show, pathOr([], ['data', 'checkboxes'], opdSettings)).reduce((res, cur, index) => `${res}<p><label><input name="checkbox-${index}" type="checkbox" ${cur.required ? 'required' : ''} />${cur.label}</label></p>`, '')}
+        ${filter(i => !!i.show, checkboxes).reduce((res, cur, index) => `${res}<p><label><input name="checkbox-${index}" type="checkbox" ${cur.required ? 'required' : ''} />${cur.label}</label></p>`, '')}
     </div>`;
 };
 
@@ -137,8 +138,8 @@ class PersonalDataAgreementComponent extends Component {
     }
 
     render() {
-        const { opdSettings } = this.props;
-        const constructorOpd = path(['useConstructor'], opdSettings) ? getConstructorOpd(opdSettings) : null;
+        const { opdSettings, language } = this.props;
+        const constructorOpd = path(['useConstructor'], opdSettings) ? getConstructorOpd(opdSettings, language) : null;
 
         return <FormContext.Consumer>{ ({ htmlAttrs }) => (
             <Fragment>
@@ -174,7 +175,7 @@ class PersonalDataAgreementComponent extends Component {
                                     getOpdValues={() => this.getOpdValues(formProps)}
                                     htmlAttrs={htmlAttrs}
                                     html={this.props.htmlOpd || constructorOpd}
-                                    acceptBtn={path(['acceptButtonLabel'], opdSettings)} />
+                                    acceptBtn={pathOr(path(['acceptButtonLabel'], opdSettings), ['translations', 'acceptButtonLabel', language], opdSettings)} />
                             )}
                         </FormSpy>
                     </Modal>
