@@ -5,7 +5,7 @@ import i18n from '../utils/i18n';
 
 import React, { Component } from 'react';
 import { Form as FinalFormForm, Field, FormSpy } from 'react-final-form';
-import { pathOr, prop, equals, isEmpty, forEach, path, includes, assocPath} from 'ramda';
+import { pathOr, prop, equals, isEmpty, forEach, path, includes, assocPath, pathEq} from 'ramda';
 import arrayMutators from 'final-form-arrays';
 import { withTranslation } from 'react-i18next';
 import cx from 'classnames';
@@ -279,7 +279,8 @@ class Form extends Component {
                                             component={Captcha}
                                             validate={value => value ? undefined : i18n.t('errors.captchaRequired')}
                                             language={language}
-                                            options={captchaOptions} />
+                                            options={captchaOptions}
+                                            invalidCaptcha={!!pathEq(['graphQLErrors', 0, 'message'], 'Invalid captcha', serverErrors)} />
                                     }
                                     <Field name='personalDataAgreement' subscription={{ value: true }}>
                                         {({ input: { value } }) => (
