@@ -150,7 +150,7 @@ class AppForm extends Component {
         const components = has('custom', searchPath) ? customComponents : {};
         const htmlOpd = has('htmlOpd', searchPath) ? htmlOpdText2 : null;
         const allowFileExtensions = path(['company', 'companySettings', 'allowFileExtensions'], vacancy);
-        const captchaSettings = path(['formPreset', 'options'], vacancy);
+        const captchaOptions = path(['formPreset', 'options'], vacancy);
 
         return data.loading ? <div>Загрузка...</div> :
             data.error ? <div>Не удалось загрузить вакансию</div> :
@@ -283,7 +283,7 @@ class AppForm extends Component {
                                     }
                                 }}
                                 captcha={companyCaptcha}
-                                captchaSettings={captchaSettings}
+                                captchaOptions={captchaOptions}
                                 // getOpdValues={({ values }) => ({
                                 //     name: `${values.lastName || ''} ${values.firstName || ''} ${values.middleName || ''}`
                                 // })}

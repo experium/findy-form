@@ -67,6 +67,7 @@ export const TRANSLATIONS = {
                 'icompleteDate': 'Full date is required',
                 'captchaRequired': 'Verification required'
             },
+            'invalidCaptcha': 'Invalid captcha'
         },
     },
     ru: {
@@ -137,6 +138,7 @@ export const TRANSLATIONS = {
                 'icompleteDate': 'Необходимо указать дату полностью',
                 'captchaRequired': 'Необходимо пройти проверку'
             },
+            'invalidCaptcha': 'Неверно введена капча'
         },
     },
     ua: {
@@ -207,6 +209,7 @@ export const TRANSLATIONS = {
                 'icompleteDate': 'Необхідно вказати дату повністю',
                 'captchaRequired': 'Необхідно пройти перевірку'
             },
+            'invalidCaptcha': 'Невірно введена капча'
         },
     },
     et: {
@@ -276,6 +279,7 @@ export const TRANSLATIONS = {
                 'icompleteDate': 'Täiskuupäev on kohustuslik',
                 'captchaRequired': 'Nõutav kontrollimine'
             },
+            'invalidCaptcha': 'Sisestati sobimatu captcha'
         },
     },
     lt: {
@@ -345,6 +349,7 @@ export const TRANSLATIONS = {
                 'icompleteDate': 'Nepieciešams norādīt pilnu datumu',
                 'captchaRequired': 'Nepieciešama verifikācija'
             },
+            'invalidCaptcha': 'Ievadīta nederīga captcha'
         },
     },
     lv: {
@@ -414,6 +419,7 @@ export const TRANSLATIONS = {
                 'icompleteDate': 'Būtina nurodyti visą datą',
                 'captchaRequired': 'Būtina patvirtinti'
             },
+            'invalidCaptcha': 'Įvesta netinkama captcha'
         },
     },
     kz: {
@@ -484,6 +490,7 @@ export const TRANSLATIONS = {
                 'icompleteDate': 'Сіз толық күнді көрсетуіңіз керек',
                 'captchaRequired': 'Тексеру қажет'
             },
+            'invalidCaptcha': 'Жарамсыз captcha енгізілді'
         },
     },
     th: {
@@ -554,6 +561,7 @@ export const TRANSLATIONS = {
                 'icompleteDate': 'คุณต้องระบุวันที่แบบเต็ม',
                 'captchaRequired': 'ต้องยืนยัน'
             },
+            'validCaptcha': 'ป้อน captcha ไม่ถูกต้อง'
         },
     },
     uz: {
@@ -624,6 +632,7 @@ export const TRANSLATIONS = {
                 'icompleteDate': 'To\'liq sanani ko\'rsatish kerak',
                 'captchaRequired': 'Tasdiqlash kerak'
             },
+            'invalidCaptcha': "Noto'g'ri captcha kiritildi"
         },
     }
 };
