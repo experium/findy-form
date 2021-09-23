@@ -1,4 +1,4 @@
-scripts.discardOldJobBuilds('5')
+scripts.discardOldJobBuilds('3')
 scripts.killPreviousJobBuilds()
 
 node {

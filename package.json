@@ -2,10 +2,8 @@
   "name": "@experium/findy-form",
   "version": "1.2.0",
   "main": "./lib/index.js",
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/experium/findy-form.git"
-  },
+  "homepage": "https://experium.github.io/findy-form",
+  "repository": "https://github.com/experium/findy-form",
   "publishConfig": {
     "access": "public",
     "cache": "~/.npm"
