@@ -31,7 +31,7 @@ node {
 
                 stage('Publish npm') {
                     withNPM(npmrcConfig:'publishnpmrc') {
-                        sh "npm version 1.2.${env.BUILD_NUMBER} && npm publish"
+                        sh "npm --no-git-tag-version version 1.2.${env.BUILD_NUMBER} && npm publish"
                     }
                 }
             }
