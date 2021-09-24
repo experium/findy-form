@@ -38,6 +38,9 @@ const commonStyle = `
         right: -8px;
         position: absolute;
     }
+    .opd-html-form.submitted input[type="checkbox"]:invalid {
+        outline: 1px solid red;
+    }
 `;
 
 export const getHtml = body => `

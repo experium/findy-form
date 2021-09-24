@@ -24,7 +24,7 @@ const getConstructorOpd = (opdSettings, language) => {
             case 'question':
                 return `${res}<input name="${cur.question}" placeholder="${cur.placeholder ? toLower(cur.placeholder) : ''}" type="text" ${cur.required ? 'required' : ''} /> `;
             case 'link':
-                return `${res}<a href="${cur.link}" target="_blank">${cur.text}</a> `;
+                return `${res}<a href="${`//${cur.link}`}" target="_blank">${cur.text}</a> `;
             case 'formated':
                 return res + cur.text;
             default:
