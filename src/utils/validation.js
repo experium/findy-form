@@ -1,5 +1,6 @@
-import { path, split, replace, contains, head, prop, isEmpty, values, join, keys, startsWith, is } from 'ramda';
+import { path, split, replace, contains, head, prop, isEmpty, values, join, keys, startsWith, is, forEach } from 'ramda';
 import * as yup from 'yup';
+import moment from 'moment';
 import { isPhoneNumber } from 'class-validator';
 import { parsePhoneNumberWithError, ParseError } from 'libphonenumber-js';
 
@@ -211,20 +212,51 @@ const rules = {
     }),
     date: () => yup.string().nullable().test({
         name: 'completeDate',
-        message: i18n.t('errors.icompleteDate'),
+        message: i18n.t('errors.incompleteDate'),
         test: value => value !== 'incomplete'
-    })
+    }),
+};
+const incorrectBirthDateLinked = {
+    experience: ['experienceStart', 'experienceEnd'],
+    courses: ['courseYearEnd'],
+    education: ['yearEnd'],
+};
+
+const additionalRules = {
+    birthDate: (rule, form) => rule.test({
+        name: 'incorrectBirthDate',
+        message: i18n.t('errors.incorrectBirthDate'),
+        test: value => {
+            if (!value || value === 'incomplete') {
+                return true;
+            }
+
+            const date = moment(value, 'DD.MM.YYYY');
+            let valid = true;
+            forEach(block => {
+                forEach(blockItem => {
+                    forEach(linkedField => {
+                        if (blockItem[linkedField]) {
+                            const linkedDate = moment(blockItem[linkedField], block === 'experience' ? 'MM.YYYY' : 'YYYY');
+                            valid = linkedDate.isAfter(date);
+                        }
+                    }, incorrectBirthDateLinked[block]);
+                }, form[block]);
+            }, keys(incorrectBirthDateLinked));
+            return valid;
+        }
+    }),
 };
 
 export const validate = (value, form, field, fieldsWithoutValidation, props) => {
-    const customValidation = path(['customValidation', field.field], props);
+    const customValidation = path(['customValidation', field.field], props) || path([field.field], additionalRules);
 
     try {
         let rule = rules[field.type] ? rules[field.type](field, props) : yup.string();
         rule = (field.type === 'personalDataAgreement') ? rule.nullable().required(() => i18n.t('errors.required')) : (
             (field.required || validateLink(field, form)) && !fieldsWithoutValidation[field.field] ? rule.nullable().required(() => i18n.t('errors.required')) : rule.nullable()
         );
-        rule = customValidation ? customValidation(rule) : rule;
+        rule = customValidation ? customValidation(rule, form) : rule;
 
         rule.validateSync(value);
         return undefined;

@@ -64,8 +64,9 @@ export const TRANSLATIONS = {
                 'fileTypeAudio': 'Invalid type, select audio file',
                 'fileTypeVideo': 'Invalid type, select video file',
                 'composite': 'Required block',
-                'icompleteDate': 'Full date is required',
-                'captchaRequired': 'Verification required'
+                'incompleteDate': 'Full date is required',
+                'captchaRequired': 'Verification required',
+                'incorrectBirthDate': 'Date in "Education" or "Experience" blocks cant be earlier then birth date',
             },
             'invalidCaptcha': 'Invalid captcha'
         },
@@ -135,8 +136,9 @@ export const TRANSLATIONS = {
                 'fileTypeAudio': 'Неверный тип файла, выберите аудиофайл',
                 'fileTypeVideo': 'Неверный тип файла, выберите видеофайл',
                 'composite': 'Блок обязателен для заполнения',
-                'icompleteDate': 'Необходимо указать дату полностью',
-                'captchaRequired': 'Необходимо пройти проверку'
+                'incompleteDate': 'Необходимо указать дату полностью',
+                'captchaRequired': 'Необходимо пройти проверку',
+                'incorrectBirthDate': 'Дата в блоках "Образование" и "Опыт работы" не может быть раньше, чем дата рождения',
             },
             'invalidCaptcha': 'Неверно введена капча'
         },
@@ -206,8 +208,9 @@ export const TRANSLATIONS = {
                 'fileTypeAudio': 'Неправильний тип файлу, виберіть аудіофайл',
                 'fileTypeVideo': 'Невірний тип файлу, виберіть відеофайл',
                 'composite': 'Блок обов\'язковий для заповнення',
-                'icompleteDate': 'Необхідно вказати дату повністю',
-                'captchaRequired': 'Необхідно пройти перевірку'
+                'incompleteDate': 'Необхідно вказати дату повністю',
+                'captchaRequired': 'Необхідно пройти перевірку',
+                'incorrectBirthDate': 'Date in "Education" or "Experience" blocks cant be earlier then birth date',
             },
             'invalidCaptcha': 'Невірно введена капча'
         },
@@ -276,8 +279,9 @@ export const TRANSLATIONS = {
                 'fileTypeAudio': 'Vale tüüp, valige helifail',
                 'fileTypeVideo': 'Vale tüüp, valige videofail',
                 'composite': 'Nõutav plokk',
-                'icompleteDate': 'Täiskuupäev on kohustuslik',
-                'captchaRequired': 'Nõutav kontrollimine'
+                'incompleteDate': 'Täiskuupäev on kohustuslik',
+                'captchaRequired': 'Nõutav kontrollimine',
+                'incorrectBirthDate': 'Date in "Education" or "Experience" blocks cant be earlier then birth date',
             },
             'invalidCaptcha': 'Sisestati sobimatu captcha'
         },
@@ -346,8 +350,9 @@ export const TRANSLATIONS = {
                 'fileTypeAudio': 'Nederīgs tips, atlasiet audio failu',
                 'fileTypeVideo': 'Nederīgs tips, atlasiet video failu',
                 'composite': 'Nepieciešamais bloks',
-                'icompleteDate': 'Nepieciešams norādīt pilnu datumu',
-                'captchaRequired': 'Nepieciešama verifikācija'
+                'incompleteDate': 'Nepieciešams norādīt pilnu datumu',
+                'captchaRequired': 'Nepieciešama verifikācija',
+                'incorrectBirthDate': 'Date in "Education" or "Experience" blocks cant be earlier then birth date',
             },
             'invalidCaptcha': 'Ievadīta nederīga captcha'
         },
@@ -416,8 +421,9 @@ export const TRANSLATIONS = {
                 'fileTypeAudio': 'Netinkamas tipas, pasirinkite garso failą',
                 'fileTypeVideo': 'Netinkamas tipas, pasirinkite vaizdo failą',
                 'composite': 'Reikalingas blokas',
-                'icompleteDate': 'Būtina nurodyti visą datą',
-                'captchaRequired': 'Būtina patvirtinti'
+                'incompleteDate': 'Būtina nurodyti visą datą',
+                'captchaRequired': 'Būtina patvirtinti',
+                'incorrectBirthDate': 'Date in "Education" or "Experience" blocks cant be earlier then birth date',
             },
             'invalidCaptcha': 'Įvesta netinkama captcha'
         },
@@ -487,8 +493,9 @@ export const TRANSLATIONS = {
                 'fileTypeAudio': 'Файл түрі жарамсыз, аудио файлды таңдаңыз',
                 'fileTypeVideo': 'Файл түрі жарамсыз, бейне файлды таңдаңыз',
                 'composite': 'Блок қажет',
-                'icompleteDate': 'Сіз толық күнді көрсетуіңіз керек',
-                'captchaRequired': 'Тексеру қажет'
+                'incompleteDate': 'Сіз толық күнді көрсетуіңіз керек',
+                'captchaRequired': 'Тексеру қажет',
+                'incorrectBirthDate': 'Date in "Education" or "Experience" blocks cant be earlier then birth date',
             },
             'invalidCaptcha': 'Жарамсыз captcha енгізілді'
         },
@@ -558,8 +565,9 @@ export const TRANSLATIONS = {
                 'fileTypeAudio': 'ประเภทไฟล์ไม่ถูกต้อง เลือกไฟล์เสียง',
                 'fileTypeVideo': 'ประเภทไฟล์ไม่ถูกต้อง เลือกไฟล์วิดีโอ',
                 'composite': 'จำเป็นต้องบล็อก',
-                'icompleteDate': 'คุณต้องระบุวันที่แบบเต็ม',
-                'captchaRequired': 'ต้องยืนยัน'
+                'incompleteDate': 'คุณต้องระบุวันที่แบบเต็ม',
+                'captchaRequired': 'ต้องยืนยัน',
+                'incorrectBirthDate': 'Date in "Education" or "Experience" blocks cant be earlier then birth date',
             },
             'validCaptcha': 'ป้อน captcha ไม่ถูกต้อง'
         },
@@ -629,8 +637,9 @@ export const TRANSLATIONS = {
                 'fileTypeAudio': 'Fayl turi noto\'g\'ri, audio faylni tanlang',
                 'fileTypeVideo': 'Fayl turi noto\'g\'ri, video faylni tanlang',
                 'composite': 'Bloklash shart',
-                'icompleteDate': 'To\'liq sanani ko\'rsatish kerak',
-                'captchaRequired': 'Tasdiqlash kerak'
+                'incompleteDate': 'To\'liq sanani ko\'rsatish kerak',
+                'captchaRequired': 'Tasdiqlash kerak',
+                'incorrectBirthDate': 'Date in "Education" or "Experience" blocks cant be earlier then birth date',
             },
             'invalidCaptcha': "Noto'g'ri captcha kiritildi"
         },

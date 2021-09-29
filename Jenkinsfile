@@ -34,6 +34,10 @@ node {
                         sh "npm --no-git-tag-version version 1.2.${env.BUILD_NUMBER} && npm publish"
                     }
                 }
+
+                // stage('Publish ghpage') {
+                //     sh "yarn deploy-storybook"
+                // }
             }
         }
     }
