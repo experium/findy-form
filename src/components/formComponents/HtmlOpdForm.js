@@ -63,9 +63,6 @@ export const getHtml = body => `
                 .opd-html-form input[type="checkbox"]:required::after {
                     content: "";
                 }
-                .form-button {
-                    display: none;
-                }
             </style>
         </head>
         <body>
@@ -178,11 +175,10 @@ class HtmlOpdForm extends Component {
                     </button>
 
                     <div className={cx('opd-html-form', { submitted: this.state.submitted })} dangerouslySetInnerHTML={{ __html: html }} />
-
-                    <button className={`${styles.formBtn} form-button`} type='button' onClick={() => this.onSubmit(formProps)} {...getAttrs('opdAccept', htmlAttrs)}>
-                        { acceptBtn || t('opdFormAccept') }
-                    </button>
                 </form>
+                <button className={`${styles.formBtn} form-button`} type='button' onClick={() => this.onSubmit(formProps)} {...getAttrs('opdAccept', htmlAttrs)}>
+                    { acceptBtn || t('opdFormAccept') }
+                </button>
             </div>
         </Fragment>;
     }
