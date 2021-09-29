@@ -15,14 +15,23 @@ import { getAttrs } from '../../utils/attrs';
 
 const getConstructorOpd = (opdSettings, language) => {
     const opdConstructor = language && language !== 'ru' ? pathOr([], ['data', 'locale', language, 'opdConstructor'], opdSettings) : pathOr([], ['data', 'opdConstructor'], opdSettings);
-    const checkboxes = language && language !== 'ru' ? pathOr([], ['data', 'locale', language, 'checkboxes'], opdSettings) : pathOr([], ['data', 'checkboxes'], opdSettings);
 
-    const text = opdConstructor.reduce((res, cur) => {
+    const text = (opdConstructor || []).reduce((res, cur) => {
         switch (cur.type) {
             case 'question':
                 return `${res}<input name="${cur.question}" placeholder="${cur.placeholder || ''}" type="text" ${cur.required ? 'required' : ''} /> `;
             case 'formated':
-                return res + cur.text;
+                return res + (cur.text || '');
+            case 'checkbox':
+                return `${res}<p>
+                    <input type="checkbox" id="${`checkbox-${cur.id}`}" />
+                    <label htmlFor="${`checkbox-${cur.id}`}">${cur.required ? <span style={{ color: 'red' }}>* </span> : ''}${cur.label || ''}</label>
+                </p>`;
+            case 'opdCheckbox':
+                return `${res}<p>
+                    <input type="checkbox" id="${cur.opdType}" />
+                    <label htmlFor="${cur.opdType}">${path([cur.opdType, 'required'], opdSettings) ? '<span style="color: red;">* </span>' : ''}${pathOr('', [cur.opdType, 'label'], opdSettings)}</label>
+                </p>`;
             default:
                 return res;
         }
@@ -30,11 +39,6 @@ const getConstructorOpd = (opdSettings, language) => {
 
     return `<div>
         ${text}
-        ${path(['purposeCheckbox', 'active'], opdSettings) ? `<p><label><input name="opdPurpose" type="checkbox" data-separate-field="opdPurpose" ${path(['purposeCheckbox', 'required'], opdSettings) ? 'required' : ''} />${path(['purposeCheckbox', 'label'], opdSettings)}</label></p>` : ''}
-        ${path(['acceptCheckbox', 'active'], opdSettings) ? `<p><label><input name="opdAccept" type="checkbox" data-separate-field="opdAccept" ${path(['acceptCheckbox', 'required'], opdSettings) ? 'required' : ''} />${path(['acceptCheckbox', 'label'], opdSettings)}</label></p>` : ''}
-        ${path(['transmissionCheckbox', 'active'], opdSettings) ? `<p><label><input name="transmission" type="checkbox" data-separate-field="transmission" ${path(['transmissionCheckbox', 'required'], opdSettings) ? 'required' : ''} />${path(['transmissionCheckbox', 'label'], opdSettings)}</label></p>` : ''}
-        ${path(['mailingCheckbox', 'active'], opdSettings) ? `<p><label><input name="mailing" type="checkbox" data-separate-field="mailing" ${path(['mailingCheckbox', 'required'], opdSettings) ? 'required' : ''} />${path(['mailingCheckbox', 'label'], opdSettings)}</label></p>` : ''}
-        ${filter(i => !!i.show, checkboxes).reduce((res, cur, index) => `${res}<p><label><input name="checkbox-${index}" type="checkbox" ${cur.required ? 'required' : ''} />${cur.label}</label></p>`, '')}
     </div>`;
 };
 
