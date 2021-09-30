@@ -234,14 +234,16 @@ const additionalRules = {
             const date = moment(value, 'DD.MM.YYYY');
             let valid = true;
             forEach(block => {
-                forEach(blockItem => {
-                    forEach(linkedField => {
-                        if (blockItem[linkedField]) {
-                            const linkedDate = moment(blockItem[linkedField], block === 'experience' ? 'MM.YYYY' : 'YYYY');
-                            valid = linkedDate.isAfter(date);
-                        }
-                    }, incorrectBirthDateLinked[block]);
-                }, form[block]);
+                if (form[block]) {
+                    forEach(blockItem => {
+                        forEach(linkedField => {
+                            if (blockItem[linkedField]) {
+                                const linkedDate = moment(blockItem[linkedField], block === 'experience' ? 'MM.YYYY' : 'YYYY');
+                                valid = linkedDate.isAfter(date);
+                            }
+                        }, incorrectBirthDateLinked[block]);
+                    }, form[block]);
+                }
             }, keys(incorrectBirthDateLinked));
             return valid;
         }
