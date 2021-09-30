@@ -25,7 +25,7 @@ const getConstructorOpd = (opdSettings, language) => {
             case 'checkbox':
                 return `${res}<p>
                     <input type="checkbox" id="${`checkbox-${cur.id}`}" />
-                    <label htmlFor="${`checkbox-${cur.id}`}">${cur.required ? <span style={{ color: 'red' }}>* </span> : ''}${cur.label || ''}</label>
+                    <label htmlFor="${`checkbox-${cur.id}`}">${cur.required ? '<span style="color: red;">* </span>' : ''}${cur.label || ''}${cur.label || ''}</label>
                 </p>`;
             case 'opdCheckbox':
                 return `${res}<p>
