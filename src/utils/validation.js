@@ -239,7 +239,7 @@ const additionalRules = {
                         forEach(linkedField => {
                             if (blockItem[linkedField]) {
                                 const linkedDate = moment(blockItem[linkedField], block === 'experience' ? 'MM.YYYY' : 'YYYY');
-                                valid = linkedDate.isAfter(date);
+                                valid = valid ? linkedDate.isAfter(date) : valid;
                             }
                         }, incorrectBirthDateLinked[block]);
                     }, form[block]);
