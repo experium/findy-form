@@ -2,14 +2,14 @@ import React, { Component, Fragment } from 'react';
 import Modal from 'react-responsive-modal';
 import { withTranslation } from 'react-i18next';
 import { FormSpy } from 'react-final-form';
-import { filter, find, path, pathOr, pick } from 'ramda';
+import { filter, find, map, path, pathOr, prop, propEq, pick } from 'ramda';
 
 import 'rc-checkbox/assets/index.css';
 import 'react-responsive-modal/styles.css';
 
 import { Checkbox } from './Checkbox';
 import styles from '../../styles/index.module.css';
-import HtmlOpdForm from './HtmlOpdForm';
+import HtmlOpdForm, { HtmlOpdFormClear } from './HtmlOpdForm';
 import { FormContext } from '../../context/FormContext';
 import { getAttrs } from '../../utils/attrs';
 
@@ -113,32 +113,42 @@ class PersonalDataAgreementComponent extends Component {
     }
 
     onSubmitHtml = (html, data) => {
-        this.props.input.onChange({
+        this.props.input.onChange(html ? {
             value: !!html,
             htmlContent: html,
             data,
-        });
+        } : null);
         this.setState({ openedHtml: false });
     }
 
     getOpdValues = formProps => {
-        const { opdSettings, getOpdValues } = this.props;
+        const { opdSettings, getOpdValues, fields } = this.props;
 
         if (getOpdValues) {
             return getOpdValues(formProps);
         }
 
         if (path(['useConstructor'], opdSettings)) {
-            return pick(filter(field => find(i => i.type === 'question' && i.question === field, pathOr([], ['data', 'opdConstructor'], opdSettings)), [
-                'firstName', 'lastName', 'middleName', 'phone', 'email', 'district', 'address', 'webpage', 'messanger', 'birthDate'
-            ]), formProps.values);
+            return pick(
+                filter(
+                    field => find(i => i.type === 'question' && i.question === field, pathOr([], ['data', 'opdConstructor'], opdSettings)),
+                    map(prop('field'), fields)
+                ),
+                formProps.values || {}
+            );
         }
 
         return {};
     }
 
+    isHtmlOpd = () => {
+        const constructorOpd = path(['useConstructor'], this.props.opdSettings) ? getConstructorOpd(this.props.opdSettings, this.props.language) : null;
+        return !!(this.props.htmlOpd || constructorOpd);
+    }
+
     render() {
         const { opdSettings, language } = this.props;
+        const isHtmlOpd = this.isHtmlOpd();
         const constructorOpd = path(['useConstructor'], opdSettings) ? getConstructorOpd(opdSettings, language) : null;
 
         return <FormContext.Consumer>{ ({ htmlAttrs }) => (
@@ -146,39 +156,51 @@ class PersonalDataAgreementComponent extends Component {
                 <Checkbox
                     id={'opdCheckbox'}
                     {...this.props}
-                    onValueChange={(this.props.htmlOpd || constructorOpd) ? this.onChange : null}
+                    onValueChange={isHtmlOpd ? this.onChange : null}
                     options={[{
                         value: true,
                         label: this.getLabel()
                     }]}
                     htmlAttrs={getAttrs('opdCheckbox', htmlAttrs)}
                 />
-                { (this.props.htmlOpd || constructorOpd) &&
-                    <Modal
-                        open={this.state.openedHtml}
-                        onClose={this.closeHtml}
-                        classNames={{
-                            modal: 'pda-modal',
-                            closeButton: 'pda-modal-close-button',
-                        }}
-                        destroyOnClose
-                        showCloseIcon={false}
-                        center
-                    >
-                        <FormSpy>
+                { isHtmlOpd &&
+                    <Fragment>
+                        <FormSpy subscription={['values']}>
                             { formProps => (
-                                <HtmlOpdForm
-                                    onSubmit={this.onSubmitHtml}
-                                    onClose={this.closeHtml}
+                                <HtmlOpdFormClear
                                     value={this.props.input.value}
-                                    formProps={formProps}
-                                    getOpdValues={() => this.getOpdValues(formProps)}
-                                    htmlAttrs={htmlAttrs}
-                                    html={this.props.htmlOpd || constructorOpd}
-                                    acceptBtn={pathOr(path(['acceptButtonLabel'], opdSettings), ['translations', 'acceptButtonLabel', language], opdSettings)} />
+                                    values={this.getOpdValues(formProps)}
+                                    onSubmitHtml={this.onSubmitHtml}
+                                />
                             )}
                         </FormSpy>
-                    </Modal>
+                        <Modal
+                            open={this.state.openedHtml}
+                            onClose={this.closeHtml}
+                            classNames={{
+                                modal: 'pda-modal',
+                                closeButton: 'pda-modal-close-button',
+                            }}
+                            destroyOnClose
+                            showCloseIcon={false}
+                            center
+                        >
+                            <FormSpy>
+                                { formProps => (
+                                    <HtmlOpdForm
+                                        onSubmit={this.onSubmitHtml}
+                                        onClose={this.closeHtml}
+                                        value={this.props.input.value}
+                                        formProps={formProps}
+                                        formFields={this.props.fields}
+                                        getOpdValues={() => this.getOpdValues(formProps)}
+                                        htmlAttrs={htmlAttrs}
+                                        html={this.props.htmlOpd || constructorOpd}
+                                        acceptBtn={pathOr(path(['acceptButtonLabel'], opdSettings), ['translations', 'acceptButtonLabel', language], opdSettings)} />
+                                )}
+                            </FormSpy>
+                        </Modal>
+                    </Fragment>
                 }
             </Fragment>
         )}</FormContext.Consumer>;

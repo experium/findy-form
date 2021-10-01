@@ -1,6 +1,6 @@
 import React, { Component, Fragment } from 'react';
 import { withTranslation } from 'react-i18next';
-import { all, forEach, is, path, trim } from 'ramda';
+import { all, equals, find, forEach, is, path, propEq, trim } from 'ramda';
 import cx from 'classnames';
 
 import styles from '../../styles/index.module.css';
@@ -96,9 +96,15 @@ class HtmlOpdForm extends Component {
         const inputs = this.form.querySelectorAll('input');
 
         forEach(input => {
-            const value = path([input.name], values);
+            const value = trim(`${path([input.name], values) || ''}`);
+
             if (value) {
-                input.setAttribute('value', trim(`${value || ''}`));
+                const field = find(propEq('field', input.name), this.props.formFields);
+
+                if (field.type === 'text') {
+                    input.value = value;
+                    input.setAttribute('value', value);
+                }
             }
         }, inputs);
     }
@@ -146,6 +152,11 @@ class HtmlOpdForm extends Component {
                     }
                 } else {
                     input.setAttribute('value', input.value);
+
+                    const field = find(propEq('field', input.name), this.props.formFields);
+                    if (field && field.type === 'text') {
+                        form.change(input.name, input.value);
+                    }
                 }
 
                 const separateField = input.getAttribute('data-separate-field');
@@ -180,6 +191,18 @@ class HtmlOpdForm extends Component {
                 </button>
             </div>
         </Fragment>;
+    }
+}
+
+export class HtmlOpdFormClear extends Component {
+    componentDidUpdate(prevProps) {
+        if (prevProps.value && !equals(prevProps.values, this.props.values)) {
+            this.props.onSubmitHtml();
+        }
+    }
+
+    render() {
+        return null;
     }
 }
 
