@@ -24,13 +24,13 @@ const getConstructorOpd = (opdSettings, language) => {
                 return res + (cur.text || '');
             case 'checkbox':
                 return `${res}<p>
-                    <input type="checkbox" id="${`checkbox-${cur.id}`}" />
-                    <label htmlFor="${`checkbox-${cur.id}`}">${cur.required ? '<span style="color: red;">* </span>' : ''}${cur.label || ''}${cur.label || ''}</label>
+                    <input type="checkbox" id="${`checkbox-${cur.id}`}" ${cur.required ? 'required="required"' : ''} />
+                    <label for="${`checkbox-${cur.id}`}">${cur.label || ''}${cur.label || ''}</label>
                 </p>`;
             case 'opdCheckbox':
                 return `${res}<p>
-                    <input type="checkbox" id="${cur.opdType}" />
-                    <label htmlFor="${cur.opdType}">${path([cur.opdType, 'required'], opdSettings) ? '<span style="color: red;">* </span>' : ''}${pathOr('', [cur.opdType, 'label'], opdSettings)}</label>
+                    <input type="checkbox" id="${cur.opdType}" ${path([cur.opdType, 'required'], opdSettings) ? 'required="required"' : ''} />
+                    <label for="${cur.opdType}">${pathOr('', [cur.opdType, 'label'], opdSettings)}</label>
                 </p>`;
             default:
                 return res;
