@@ -284,10 +284,10 @@ class AppForm extends Component {
                                 }}
                                 captcha={companyCaptcha}
                                 captchaOptions={captchaOptions}
-                                // getOpdValues={({ values }) => ({
-                                //     name: `${values.lastName || ''} ${values.firstName || ''} ${values.middleName || ''}`
-                                // })}
-                                updateOpdValuesOn={['lastName', 'firstName', 'middleName']}
+                                getOpdValues={htmlOpd ? ({ values }) => ({
+                                    name: `я, ${values.lastName || ''} ${values.firstName || ''} ${values.middleName || ''}`
+                                }) : undefined}
+                                updateOpdValuesOn={htmlOpd ? ['lastName', 'firstName', 'middleName'] : undefined}
                             />
                         }
                     </Mutation>

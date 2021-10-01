@@ -101,7 +101,7 @@ class HtmlOpdForm extends Component {
             if (value) {
                 const field = find(propEq('field', input.name), this.props.formFields);
 
-                if (field.type === 'text') {
+                if (!field || field.type === 'text') {
                     input.value = value;
                     input.setAttribute('value', value);
                 }
