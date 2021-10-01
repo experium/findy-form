@@ -66,7 +66,7 @@ export const TRANSLATIONS = {
                 'composite': 'Required block',
                 'incompleteDate': 'Full date is required',
                 'captchaRequired': 'Verification required',
-                'incorrectBirthDate': 'Date in "Education" or "Experience" blocks cant be earlier then birth date',
+                'incorrectBirthDate': 'Date cant be earlier then birth date',
             },
             'invalidCaptcha': 'Invalid captcha'
         },
@@ -138,7 +138,7 @@ export const TRANSLATIONS = {
                 'composite': 'Блок обязателен для заполнения',
                 'incompleteDate': 'Необходимо указать дату полностью',
                 'captchaRequired': 'Необходимо пройти проверку',
-                'incorrectBirthDate': 'Дата в блоках "Образование" и "Опыт работы" не может быть раньше, чем дата рождения',
+                'incorrectBirthDate': 'Дата не может быть меньше даты рождения',
             },
             'invalidCaptcha': 'Неверно введена капча'
         },
@@ -210,7 +210,7 @@ export const TRANSLATIONS = {
                 'composite': 'Блок обов\'язковий для заповнення',
                 'incompleteDate': 'Необхідно вказати дату повністю',
                 'captchaRequired': 'Необхідно пройти перевірку',
-                'incorrectBirthDate': 'Date in "Education" or "Experience" blocks cant be earlier then birth date',
+                'incorrectBirthDate': 'Date cant be earlier then birth date',
             },
             'invalidCaptcha': 'Невірно введена капча'
         },
@@ -281,7 +281,7 @@ export const TRANSLATIONS = {
                 'composite': 'Nõutav plokk',
                 'incompleteDate': 'Täiskuupäev on kohustuslik',
                 'captchaRequired': 'Nõutav kontrollimine',
-                'incorrectBirthDate': 'Date in "Education" or "Experience" blocks cant be earlier then birth date',
+                'incorrectBirthDate': 'Date cant be earlier then birth date',
             },
             'invalidCaptcha': 'Sisestati sobimatu captcha'
         },
@@ -352,7 +352,7 @@ export const TRANSLATIONS = {
                 'composite': 'Nepieciešamais bloks',
                 'incompleteDate': 'Nepieciešams norādīt pilnu datumu',
                 'captchaRequired': 'Nepieciešama verifikācija',
-                'incorrectBirthDate': 'Date in "Education" or "Experience" blocks cant be earlier then birth date',
+                'incorrectBirthDate': 'Date cant be earlier then birth date',
             },
             'invalidCaptcha': 'Ievadīta nederīga captcha'
         },
@@ -423,7 +423,7 @@ export const TRANSLATIONS = {
                 'composite': 'Reikalingas blokas',
                 'incompleteDate': 'Būtina nurodyti visą datą',
                 'captchaRequired': 'Būtina patvirtinti',
-                'incorrectBirthDate': 'Date in "Education" or "Experience" blocks cant be earlier then birth date',
+                'incorrectBirthDate': 'Date cant be earlier then birth date',
             },
             'invalidCaptcha': 'Įvesta netinkama captcha'
         },
@@ -495,7 +495,7 @@ export const TRANSLATIONS = {
                 'composite': 'Блок қажет',
                 'incompleteDate': 'Сіз толық күнді көрсетуіңіз керек',
                 'captchaRequired': 'Тексеру қажет',
-                'incorrectBirthDate': 'Date in "Education" or "Experience" blocks cant be earlier then birth date',
+                'incorrectBirthDate': 'Date cant be earlier then birth date',
             },
             'invalidCaptcha': 'Жарамсыз captcha енгізілді'
         },
@@ -567,7 +567,7 @@ export const TRANSLATIONS = {
                 'composite': 'จำเป็นต้องบล็อก',
                 'incompleteDate': 'คุณต้องระบุวันที่แบบเต็ม',
                 'captchaRequired': 'ต้องยืนยัน',
-                'incorrectBirthDate': 'Date in "Education" or "Experience" blocks cant be earlier then birth date',
+                'incorrectBirthDate': 'Date cant be earlier then birth date',
             },
             'validCaptcha': 'ป้อน captcha ไม่ถูกต้อง'
         },
@@ -639,7 +639,7 @@ export const TRANSLATIONS = {
                 'composite': 'Bloklash shart',
                 'incompleteDate': 'To\'liq sanani ko\'rsatish kerak',
                 'captchaRequired': 'Tasdiqlash kerak',
-                'incorrectBirthDate': 'Date in "Education" or "Experience" blocks cant be earlier then birth date',
+                'incorrectBirthDate': 'Date cant be earlier then birth date',
             },
             'invalidCaptcha': "Noto'g'ri captcha kiritildi"
         },

@@ -9,6 +9,8 @@ import i18n from './i18n';
 import { EMAIL_EXPERIUM, EMAIL_DOMAIN, EMAIL_RFC, EMAIL_RFC_LOCALPART } from '../constants/regexps';
 import { defaultAllowFileExtensions, VALIDATION_FILE_TYPES } from '../constants/allowFileExtensions';
 
+const checkDate = value => !value || value === 'incomplete';
+
 export const checkFileType = (fileType, mimeType, allowFileExtensions = {}) => {
     switch (fileType) {
         case 'audio':
@@ -216,38 +218,27 @@ const rules = {
         test: value => value !== 'incomplete'
     }),
 };
-const incorrectBirthDateLinked = {
-    experience: ['experienceStart', 'experienceEnd'],
-    courses: ['courseYearEnd'],
-    education: ['yearEnd'],
-};
+
+const validateBirthDate = format => (rule, form) => rule.test({
+    name: 'incorrectBirthDate',
+    message: i18n.t('errors.incorrectBirthDate'),
+    test: value => {
+        if (checkDate(value) || checkDate(form.birthDate)) {
+            return true;
+        }
+
+        const birthDate = moment(form.birthDate, 'DD.MM.YYYY');
+        const date = moment(value, format);
+
+        return date.isAfter(birthDate);
+    }
+});
 
 const additionalRules = {
-    birthDate: (rule, form) => rule.test({
-        name: 'incorrectBirthDate',
-        message: i18n.t('errors.incorrectBirthDate'),
-        test: value => {
-            if (!value || value === 'incomplete') {
-                return true;
-            }
-
-            const date = moment(value, 'DD.MM.YYYY');
-            let valid = true;
-            forEach(block => {
-                if (form[block]) {
-                    forEach(blockItem => {
-                        forEach(linkedField => {
-                            if (blockItem[linkedField]) {
-                                const linkedDate = moment(blockItem[linkedField], block === 'experience' ? 'MM.YYYY' : 'YYYY');
-                                valid = valid ? linkedDate.isAfter(date) : valid;
-                            }
-                        }, incorrectBirthDateLinked[block]);
-                    }, form[block]);
-                }
-            }, keys(incorrectBirthDateLinked));
-            return valid;
-        }
-    }),
+    yearEnd: validateBirthDate('YYYY'),
+    courseYearEnd: validateBirthDate('YYYY'),
+    experienceStart: validateBirthDate('DD.YYYY'),
+    experienceEnd: validateBirthDate('DD.YYYY'),
 };
 
 export const validate = (value, form, field, fieldsWithoutValidation, props) => {
@@ -258,6 +249,7 @@ export const validate = (value, form, field, fieldsWithoutValidation, props) => 
         rule = (field.type === 'personalDataAgreement') ? rule.nullable().required(() => i18n.t('errors.required')) : (
             (field.required || validateLink(field, form)) && !fieldsWithoutValidation[field.field] ? rule.nullable().required(() => i18n.t('errors.required')) : rule.nullable()
         );
+
         rule = customValidation ? customValidation(rule, form) : rule;
 
         rule.validateSync(value);
