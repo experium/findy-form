@@ -168,6 +168,7 @@ class PersonalDataAgreementComponent extends Component {
                         <FormSpy subscription={['values']}>
                             { formProps => (
                                 <HtmlOpdFormClear
+                                    open={this.state.openedHtml}
                                     value={this.props.input.value}
                                     values={this.getOpdValues(formProps)}
                                     onSubmitHtml={this.onSubmitHtml}

@@ -1,6 +1,6 @@
 import React, { Component, Fragment } from 'react';
 import { withTranslation } from 'react-i18next';
-import { all, equals, find, forEach, is, path, propEq, trim } from 'ramda';
+import { all, equals, find, forEach, includes, is, path, propEq, trim } from 'ramda';
 import cx from 'classnames';
 
 import styles from '../../styles/index.module.css';
@@ -73,6 +73,9 @@ export const getHtml = body => `
     </html>
 `;
 
+const TEXT_FIELDS = ['text', 'email', 'phone', 'date'];
+const SELECT_FIELDS = ['dictionary', 'company_dictionary', 'list', 'city', 'country', 'region'];
+
 class HtmlOpdForm extends Component {
     state = {
         submitted: false,
@@ -101,9 +104,16 @@ class HtmlOpdForm extends Component {
             if (value) {
                 const field = find(propEq('field', input.name), this.props.formFields);
 
-                if (!field || field.type === 'text') {
+                if (!field || includes(field.type, TEXT_FIELDS)) {
                     input.value = value;
                     input.setAttribute('value', value);
+                } else if (field && includes(field.type, SELECT_FIELDS)) {
+                    const selectValue = path(['innerHTML'], document.querySelector(`#field-${input.name} .jobot-forms-rc-select-selection-item`));
+
+                    if (selectValue) {
+                        input.value = selectValue;
+                        input.setAttribute('value', selectValue);
+                    }
                 }
             }
         }, inputs);
@@ -154,7 +164,7 @@ class HtmlOpdForm extends Component {
                     input.setAttribute('value', input.value);
 
                     const field = find(propEq('field', input.name), this.props.formFields);
-                    if (field && field.type === 'text') {
+                    if (field && includes(field.type, TEXT_FIELDS)) {
                         form.change(input.name, input.value);
                     }
                 }
@@ -196,7 +206,7 @@ class HtmlOpdForm extends Component {
 
 export class HtmlOpdFormClear extends Component {
     componentDidUpdate(prevProps) {
-        if (prevProps.value && !equals(prevProps.values, this.props.values)) {
+        if (prevProps.value && !prevProps.open && !equals(prevProps.values, this.props.values)) {
             this.props.onSubmitHtml();
         }
     }
