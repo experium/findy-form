@@ -14,7 +14,7 @@ import { FormContext } from '../../context/FormContext';
 import { getAttrs } from '../../utils/attrs';
 
 const getConstructorOpd = (opdSettings, language) => {
-    const opdConstructor = language && language !== 'ru' ? pathOr([], ['data', 'locale', language, 'opdConstructor'], opdSettings) : pathOr([], ['data', 'opdConstructor'], opdSettings);
+    const opdConstructor = pathOr([], ['data', 'opdConstructor'], opdSettings);
 
     const text = (opdConstructor || []).reduce((res, cur) => {
         switch (cur.type) {
@@ -25,7 +25,7 @@ const getConstructorOpd = (opdSettings, language) => {
             case 'checkbox':
                 return `${res}<p>
                     <input type="checkbox" id="${`checkbox-${cur.id}`}" ${cur.required ? 'required="required"' : ''} />
-                    <label for="${`checkbox-${cur.id}`}">${cur.label || ''}${cur.label || ''}</label>
+                    <label for="${`checkbox-${cur.id}`}">${cur.label || ''}</label>
                 </p>`;
             case 'opdCheckbox':
                 return `${res}<p>
