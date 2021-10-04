@@ -11,6 +11,7 @@ import { EMAIL_EXPERIUM } from '../../constants/regexps';
 const commonStyle = `
     .opd-html-form {
         line-height: 20px;
+        margin-bottom: 24px;
     }
     .opd-html-form input {
         border: none;
@@ -27,9 +28,35 @@ const commonStyle = `
     .opd-html-form.submitted input:invalid {
         border-bottom: 1px solid red;
     }
+    .opd-html-form label{
+        cursor: pointer;
+    }
     .opd-html-form input[type="checkbox"] {
         position: relative;
-        margin-right: 10px;
+        margin-right: 8px;
+        margin-bottom: 0;
+        border: 1px solid #ccc;
+        appearance: none;
+        width: 18px;
+        height: 18px;
+        border-radius: 2px;
+    }
+    .opd-html-form input[type="checkbox"]:checked {
+        background: #3a70bb;
+        border-color: #3a70bb;
+    }
+    .opd-html-form input[type="checkbox"]:checked:before {
+        transform: rotate(45deg);
+        position: absolute;
+        left: 5px;
+        top: 2px;
+        display: table;
+        width: 4px;
+        height: 7px;
+        border: 2px solid #ffffff;
+        border-top: 0;
+        border-left: 0;
+        content: ' ';
     }
     .opd-html-form input[type="checkbox"]:required::after {
         content: "*";
@@ -39,7 +66,14 @@ const commonStyle = `
         position: absolute;
     }
     .opd-html-form.submitted input[type="checkbox"]:invalid {
-        outline: 1px solid red;
+        border-color: red;
+    }
+    .opd-html-form > div p {
+        display: inline-block;
+        margin: 0 0 8px;
+    }
+    .opd-html-form > div p + p {
+        display: block;
     }
 `;
 
