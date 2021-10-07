@@ -18,6 +18,10 @@ const commonStyle = `
         border-bottom: 1px solid #000;
         font-size: 16px;
         pointer-events: auto;
+        margin: 4px 0;
+        appearance: none;
+        -moz-appearance: none;
+        -webkit-appearance: none;
     }
     .opd-html-form label {
         pointer-events: auto;
@@ -34,7 +38,7 @@ const commonStyle = `
     .opd-html-form input[type="checkbox"] {
         position: relative;
         margin-right: 8px;
-        margin-bottom: 0;
+        margin-bottom: -2px;
         border: 1px solid #ccc;
         appearance: none;
         width: 18px;
@@ -68,12 +72,21 @@ const commonStyle = `
     .opd-html-form.submitted input[type="checkbox"]:invalid {
         border-color: red;
     }
+    .opd-html-form > div > div {
+        margin: 4px 0;
+    }
     .opd-html-form > div p {
         display: inline-block;
-        margin: 0 0 8px;
+        margin: 4px 0;
     }
     .opd-html-form > div p + p {
         display: block;
+    }
+    @media screen and (max-width: 991px) {
+        .opd-html-form input[type="checkbox"]:checked:before {
+            left: 6px;
+            top: 3px;
+        }
     }
 `;
 
