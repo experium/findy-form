@@ -1,6 +1,6 @@
 import React, { Component, Fragment } from 'react';
 import { withTranslation } from 'react-i18next';
-import { all, equals, find, forEach, includes, is, path, propEq, trim } from 'ramda';
+import { all, equals, join, find, forEach, map, includes, is, path, propEq, trim } from 'ramda';
 import cx from 'classnames';
 
 import styles from '../../styles/index.module.css';
@@ -121,7 +121,7 @@ export const getHtml = body => `
 `;
 
 const TEXT_FIELDS = ['text', 'email', 'phone', 'date'];
-const SELECT_FIELDS = ['dictionary', 'company_dictionary', 'list', 'city', 'country', 'region'];
+const SELECT_FIELDS = ['dictionary', 'company_dictionary', 'list', 'city', 'country', 'region', 'money'];
 
 class HtmlOpdForm extends Component {
     state = {
@@ -155,9 +155,20 @@ class HtmlOpdForm extends Component {
                     input.value = value;
                     input.setAttribute('value', value);
                 } else if (field && includes(field.type, SELECT_FIELDS)) {
-                    const selectValue = path(['innerHTML'], document.querySelector(`#field-${input.name} .jobot-forms-rc-select-selection-item`));
+                    const selectValue = path(['settings', 'multiple'], field)
+                        ? path(['settings', 'checkboxes'], field)
+                            ? join(', ', map(el => path(['innerHTML'], el), document.querySelectorAll(`#field-${input.name} .rc-checkbox-checked + .checkbox-label`)))
+                            : join(', ', map(el => path(['innerHTML'], el), document.querySelectorAll(`#field-${input.name} .jobot-forms-rc-select-selection-item-content`)))
+                        : path(['settings', 'checkboxes'], field)
+                            ? path(['innerHTML'], document.querySelector(`#field-${input.name} .rc-checkbox-checked + .radio-label`))
+                            : path(['innerHTML'], document.querySelector(`#field-${input.name} .jobot-forms-rc-select-selection-item`));
 
-                    if (selectValue) {
+                    if (field.type === 'money') {
+                        const inputValue = document.querySelector(`#field-${input.name} input#${input.name}`).value;
+                        const moneyValue = `${inputValue || ''} ${selectValue || ''}`;
+                        input.value = moneyValue;
+                        input.setAttribute('value', moneyValue);
+                    } else if (selectValue) {
                         input.value = selectValue;
                         input.setAttribute('value', selectValue);
                     }

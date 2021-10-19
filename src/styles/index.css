@@ -40,6 +40,11 @@
     box-sizing: content-box;
 }
 
+.radio-wrapper .rc-checkbox-inner:after {
+    margin-top: -1px;
+    margin-left: -1px;
+}
+
 .radio-wrapper .rc-checkbox-inner {
     border-radius: 50%;
 }
