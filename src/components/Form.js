@@ -299,6 +299,9 @@ class Form extends Component {
                                     </Field>
                                 </div>
                             </FormContext.Provider>
+                            { pathEq(['graphQLErrors', 0, 'message'], 'Access to applicant create restricted for current company license', serverErrors) &&
+                                <div style={{ marginTop: 15 }} className={styles.error} dangerouslySetInnerHTML={{ __html: t('licenseError') }} />
+                            }
                         </form>;
                     }}
                 </FinalFormForm>
