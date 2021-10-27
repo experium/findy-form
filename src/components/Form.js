@@ -5,7 +5,7 @@ import i18n from '../utils/i18n';
 
 import React, { Component } from 'react';
 import { Form as FinalFormForm, Field, FormSpy } from 'react-final-form';
-import { pathOr, prop, equals, isEmpty, forEach, path, includes, assocPath, pathEq} from 'ramda';
+import { pathOr, prop, equals, isEmpty, forEach, path, includes, assocPath } from 'ramda';
 import arrayMutators from 'final-form-arrays';
 import { withTranslation } from 'react-i18next';
 import cx from 'classnames';
@@ -16,6 +16,7 @@ import styles from '../styles/index.module.css';
 import { RU } from '../constants/translations';
 import { isLinkedQuestion, findChildGeoQuestionsNames } from '../utils/questions';
 import { getAttrs } from '../utils/attrs';
+import { isError } from '../utils/errors';
 import { CompanyDictionaryContext } from '../context/CompanyDictionary';
 import { FormContext } from '../context/FormContext';
 import Fields from './Fields';
@@ -280,7 +281,7 @@ class Form extends Component {
                                             validate={value => value ? undefined : i18n.t('errors.captchaRequired')}
                                             language={language}
                                             options={captchaOptions}
-                                            invalidCaptcha={!!pathEq(['graphQLErrors', 0, 'message'], 'Invalid captcha', serverErrors)} />
+                                            invalidCaptcha={isError('Invalid captcha', serverErrors)} />
                                     }
                                     <Field name='personalDataAgreement' subscription={{ value: true }}>
                                         {({ input: { value } }) => (
@@ -299,7 +300,7 @@ class Form extends Component {
                                     </Field>
                                 </div>
                             </FormContext.Provider>
-                            { pathEq(['graphQLErrors', 0, 'message'], 'Access to applicant create restricted for current company license', serverErrors) &&
+                            { isError('Access to applicant create restricted for current company license', serverErrors) &&
                                 <div style={{ marginTop: 15 }} className={styles.error} dangerouslySetInnerHTML={{ __html: t('licenseError') }} />
                             }
                         </form>;

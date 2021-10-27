@@ -5,12 +5,13 @@ import ReactSelect from 'rc-select';
 import qs from 'qs';
 import Modal from 'react-responsive-modal';
 
+import styles from '../../src/styles/index.module.css';
+
 import Form from '../../src/index';
 import { getVacancy } from '../queries/vacancy';
 import { createApplicant } from '../queries/applicants';
 import { API_URL, GET_FILE, POST_FILE } from '../constants/url';
 import { LANGUAGES_OPTIONS } from '../constants/languages';
-import styles from '../../src/styles/index.module.css';
 
 const htmlOpdText =
     `<div>

@@ -4,9 +4,6 @@ import { withTranslation } from 'react-i18next';
 import { FormSpy } from 'react-final-form';
 import { filter, find, map, path, pathOr, prop, propEq, pick } from 'ramda';
 
-import 'rc-checkbox/assets/index.css';
-import 'react-responsive-modal/styles.css';
-
 import { Checkbox } from './Checkbox';
 import styles from '../../styles/index.module.css';
 import HtmlOpdForm, { HtmlOpdFormClear } from './HtmlOpdForm';
