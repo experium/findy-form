@@ -69,7 +69,8 @@ export const TRANSLATIONS = {
                 'incorrectBirthDate': 'Date cant be earlier then birth date',
             },
             'invalidCaptcha': 'Invalid captcha',
-            'licenseError': 'The maximum number of responses has been reached for test access. Contact the Sales Department of Geliosoft LLC and the contacts of the sales department (<a href=\"mailto:help@findy.ru\"> help@findy.ru </a>, <a href=\"tel:+74957836603\"> +7 (495) 783-66-03 </a> (9:00-18:00 Moscow time), <a href=\"tel:+79150216424\"> +7 (915) 021-64-24 </a>) '
+            'licenseError': 'The maximum number of responses has been reached for test access. Contact the Sales Department of Geliosoft LLC and the contacts of the sales department (<a href=\"mailto:help@findy.ru\"> help@findy.ru </a>, <a href=\"tel:+74957836603\"> +7 (495) 783-66-03 </a> (9:00-18:00 Moscow time), <a href=\"tel:+79150216424\"> +7 (915) 021-64-24 </a>) ',
+            'licenseExpired': 'The test access period "30 days" has expired. Contact the Sales Department of "Heliosoft" LLC and the contacts of the sales department (<a href="mailto:help@findy.ru"> help@findy.ru </a>, <a href="tel:+74957836603"> +7 (495) 783-66-03 </a> (9:00-18:00 Moscow time), <a href="tel: +79150216424"> + 7 (915) 021-64-24 </a>)',
         },
     },
     ru: {
@@ -142,7 +143,8 @@ export const TRANSLATIONS = {
                 'incorrectBirthDate': 'Дата не может быть меньше даты рождения',
             },
             'invalidCaptcha': 'Неверно введена капча',
-            'licenseError': 'В рамках тестового доступа достигнуто максимальное количество откликов. Обратитесь в Отдел продаж ООО "Гелиософт" и контакты отдела продаж (<a href=\"mailto:help@findy.ru\">help@findy.ru</a>, <a href=\"tel:+74957836603\">+7 (495) 783-66-03</a> (9:00-18:00 МСК), <a href=\"tel:+79150216424\">+7 (915) 021-64-24</a>)'
+            'licenseError': 'В рамках тестового доступа достигнуто максимальное количество откликов. Обратитесь в Отдел продаж ООО "Гелиософт" и контакты отдела продаж (<a href=\"mailto:help@findy.ru\">help@findy.ru</a>, <a href=\"tel:+74957836603\">+7 (495) 783-66-03</a> (9:00-18:00 МСК), <a href=\"tel:+79150216424\">+7 (915) 021-64-24</a>)',
+            'licenseExpired': 'Срок тестового доступа "30 дней" завершен. Обратитесь в Отдел продаж ООО "Гелиософт" и контакты отдела продаж (<a href="mailto:help@findy.ru">help@findy.ru</a>, <a href="tel:+74957836603">+7 (495) 783-66-03</a> (9:00-18:00 МСК), <a href="tel:+79150216424">+7 (915) 021-64-24</a>)',
         },
     },
     ua: {
@@ -215,7 +217,8 @@ export const TRANSLATIONS = {
                 'incorrectBirthDate': 'Date cant be earlier then birth date',
             },
             'invalidCaptcha': 'Невірно введена капча',
-            'licenseError': 'В рамках тестового доступу досягнуто максимальну кількість відгуків. Зверніться до Відділу продажу ТОВ "Геліософт" і контакти відділу продажів (<a href=\"mailto:help@findy.ru\"> help@findy.ru </a>, <a href=\"tel:+74957836603\"> +7 (495) 783-66-03 </a> (9:00-18:00 за київським часом), <a href=\"tel:+79150216424\"> +7 (915) 021-64-24 </a>) '
+            'licenseError': 'В рамках тестового доступу досягнуто максимальну кількість відгуків. Зверніться до Відділу продажу ТОВ "Геліософт" і контакти відділу продажів (<a href=\"mailto:help@findy.ru\"> help@findy.ru </a>, <a href=\"tel:+74957836603\"> +7 (495) 783-66-03 </a> (9:00-18:00 за київським часом), <a href=\"tel:+79150216424\"> +7 (915) 021-64-24 </a>) ',
+            'licenseExpired': 'Термін тестового доступу "30 днів" завершено. Зверніться до Відділу продаж ТОВ "Геліософт" (<a href="mailto:help@findy.ru">help@findy.ru</a>, <a href="tel:+74957836603">+7 (495) 783-66-03</a> (9:00-18:00 МСК), <a href="tel:+79150216424">+7 (915) 021-64-24</a>)',
         },
     },
     et: {
@@ -287,7 +290,8 @@ export const TRANSLATIONS = {
                 'incorrectBirthDate': 'Date cant be earlier then birth date',
             },
             'invalidCaptcha': 'Sisestati sobimatu captcha',
-            'licenseError': 'Testjuurdepääsuks on saavutatud maksimaalne vastuste arv. Võtke ühendust Heliosoft LLC müügiosakonnaga ja müügiosakonna kontaktidega (<a href=\"mailto:help@findy.ru\"> help@findy.ru </a>, <a href=\"tel:+74957836603\"> +7 (495) 783-66-03 </a> (9:00-18:00 Moskva aja järgi), <a href=\"tel:+79150216424\"> +7 (915) 021-64–24</a>)'
+            'licenseError': 'Testjuurdepääsuks on saavutatud maksimaalne vastuste arv. Võtke ühendust Heliosoft LLC müügiosakonnaga ja müügiosakonna kontaktidega (<a href=\"mailto:help@findy.ru\"> help@findy.ru </a>, <a href=\"tel:+74957836603\"> +7 (495) 783-66-03 </a> (9:00-18:00 MSK), <a href=\"tel:+79150216424\"> +7 (915) 021-64–24</a>)',
+            'licenseExpired': 'Testjuurdepääsu periood "30 päeva" on möödas. Võtke ühendust "Heliosoft" LLC müügiosakonnaga ja müügiosakonna kontaktidega (<a href=\"mailto:help@findy.ru\"> help@findy.ru </a>, <a href=\"tel:+74957836603\"> +7 (495) 783-66-03 </a> (9:00-18:00 MSK), <a href=\"tel:+79150216424\"> +7 (915) 021-64–24</a>)',
         },
     },
     lt: {
@@ -359,7 +363,8 @@ export const TRANSLATIONS = {
                 'incorrectBirthDate': 'Date cant be earlier then birth date',
             },
             'invalidCaptcha': 'Ievadīta nederīga captcha',
-            'licenseError': 'Testa piekļūšanai ir sasniegts maksimālais atbilžu skaits. Sazinieties ar Heliosoft LLC pārdošanas nodaļu un pārdošanas nodaļas kontaktpersonām (<a href=\"mailto:help@findy.ru\"> help@findy.ru </a>, <a href=\"tel:+74957836603\"> +7 (495) 783-66-03 </a> (9:00-18:00 pēc Maskavas laika), <a href=\"tel:+79150216424\"> +7 (915) 021-64–24 </a>)'
+            'licenseError': 'Testa piekļūšanai ir sasniegts maksimālais atbilžu skaits. Sazinieties ar Heliosoft LLC pārdošanas nodaļu un pārdošanas nodaļas kontaktpersonām (<a href=\"mailto:help@findy.ru\"> help@findy.ru </a>, <a href=\"tel:+74957836603\"> +7 (495) 783-66-03 </a> (9:00-18:00 pēc Maskavas laika), <a href=\"tel:+79150216424\"> +7 (915) 021-64–24 </a>)',
+            'licenseExpired': 'Bandymo prieigos laikotarpis „30 dienų“ baigėsi. Susisiekite su „Heliosoft“ LLC pardavimų skyriumi ir pardavimo skyriaus kontaktais (<a href="mailto:help@findy.ru"> help@findy.ru </a>, <a href = "tel: +74957836603 "> +7 (495) 783-66-03 </a> (9:00-18:00 Maskvos laiku), <a href="tel: +79150216424"> + 7 (915) 021-64-24 < /a>)',
         },
     },
     lv: {
@@ -431,7 +436,8 @@ export const TRANSLATIONS = {
                 'incorrectBirthDate': 'Date cant be earlier then birth date',
             },
             'invalidCaptcha': 'Įvesta netinkama captcha',
-            'licenseError': 'Pasiektas maksimalus bandymų prieigos atsakymų skaičius. Susisiekite su „Heliosoft LLC“ pardavimo skyriumi ir pardavimo skyriaus kontaktais (<a href=\"mailto:help@findy.ru\"> help@findy.ru </a>, <a href=\"tel:+74957836603\"> +7 (495) 783-66-03 </a> (9:00-18:00 Maskvos laiku), <a href=\"tel:+79150216424\"> +7 (915) 021-64–24 </a>)'
+            'licenseError': 'Pasiektas maksimalus bandymų prieigos atsakymų skaičius. Susisiekite su „Heliosoft LLC“ pardavimo skyriumi ir pardavimo skyriaus kontaktais (<a href=\"mailto:help@findy.ru\"> help@findy.ru </a>, <a href=\"tel:+74957836603\"> +7 (495) 783-66-03 </a> (9:00-18:00 Maskvos laiku), <a href=\"tel:+79150216424\"> +7 (915) 021-64–24 </a>)',
+            'licenseExpired': 'Pārbaudes piekļuves periods "30 dienas" ir beidzies. Sazinieties ar "Heliosoft" LLC Pārdošanas Nodaļu un pārdošanas nodaļas kontaktiem (<a href="mailto:help@findy.ru"> help@findy.ru </a>, <a href="tel:+74957836603"> +7 (495) 783-66-03 </a> (9:00-18:00 Maskavas laiks), <a href="tel: +79150216424"> + 7 (915) 021-64-24 </a>) ',
         },
     },
     kz: {
@@ -504,7 +510,8 @@ export const TRANSLATIONS = {
                 'incorrectBirthDate': 'Date cant be earlier then birth date',
             },
             'invalidCaptcha': 'Жарамсыз captcha енгізілді',
-            'licenseError': 'Тестке кіру үшін жауаптардың максималды санына жетті. Heliosoft LLC сату бөліміне және сату бөлімінің байланыстарына хабарласыңыз (<a href=\"mailto:help@findy.ru\"> help@findy.ru </a>, <a href =\"tel:+74957836603\"> +7 (495) 783-66-03 </a> (Мәскеу уақытымен 9:00-18:00), <a href=\"tel:+79150216424\"> +7 (915) 021-64-24 </a>) '
+            'licenseError': 'Тестке кіру үшін жауаптардың максималды санына жетті. Heliosoft LLC сату бөліміне және сату бөлімінің байланыстарына хабарласыңыз (<a href=\"mailto:help@findy.ru\"> help@findy.ru </a>, <a href =\"tel:+74957836603\"> +7 (495) 783-66-03 </a> (Мәскеу уақытымен 9:00-18:00), <a href=\"tel:+79150216424\"> +7 (915) 021-64-24 </a>) ',
+            'licenseExpired': '',
         },
     },
     th: {
@@ -577,7 +584,8 @@ export const TRANSLATIONS = {
                 'incorrectBirthDate': 'Date cant be earlier then birth date',
             },
             'validCaptcha': 'ป้อน captcha ไม่ถูกต้อง',
-            'licenseError': 'มีการตอบกลับถึงจำนวนสูงสุดสำหรับการเข้าถึงการทดสอบแล้ว ติดต่อฝ่ายขายของ Heliosoft LLC และผู้ติดต่อของฝ่ายขาย (<a href=\"mailto:help@findy.ru\"> help@findy.ru </a>, <a href=\"tel:+74957836603\"> +7 (495) 783-66-03 </a> (9:00-18:00 น. เวลามอสโก), ​​<a href=\"tel:+79150216424\"> +7 (915) 021-64-24 </a>) '
+            'licenseError': 'มีการตอบกลับถึงจำนวนสูงสุดสำหรับการเข้าถึงการทดสอบแล้ว ติดต่อฝ่ายขายของ Heliosoft LLC และผู้ติดต่อของฝ่ายขาย (<a href=\"mailto:help@findy.ru\"> help@findy.ru </a>, <a href=\"tel:+74957836603\"> +7 (495) 783-66-03 </a> (9:00-18:00 น. เวลามอสโก), ​​<a href=\"tel:+79150216424\"> +7 (915) 021-64-24 </a>) ',
+            'licenseExpired': '',
         },
     },
     uz: {
@@ -650,7 +658,8 @@ export const TRANSLATIONS = {
                 'incorrectBirthDate': 'Date cant be earlier then birth date',
             },
             'invalidCaptcha': "Noto'g'ri captcha kiritildi",
-            'licenseError': 'Testlarga kirish uchun maksimal javoblar soniga erishildi. "Heliosoft" MChJ savdo bo\'limi va savdo bo\'limi bilan bog\'laning (< ahref=\"mailto:help@findy.ru\"> help@findy.ru </a>, <a href =\"tel:+ 74957836603\"> +7 (495) 783-66-03 </a> (Moskva vaqti bilan 9:00-18:00), <a href=\"tel:+79150216424\"> +7 (915) 021-64-24 </a>)'
+            'licenseError': 'Testlarga kirish uchun maksimal javoblar soniga erishildi. "Heliosoft" MChJ savdo bo\'limi va savdo bo\'limi bilan bog\'laning (< ahref=\"mailto:help@findy.ru\"> help@findy.ru </a>, <a href =\"tel:+ 74957836603\"> +7 (495) 783-66-03 </a> (Moskva vaqti bilan 9:00-18:00), <a href=\"tel:+79150216424\"> +7 (915) 021-64-24 </a>)',
+            'licenseExpired': '',
         },
     }
 };
