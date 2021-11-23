@@ -40,11 +40,6 @@
     box-sizing: content-box;
 }
 
-.radio-wrapper .rc-checkbox-inner:after {
-    margin-top: -1px;
-    margin-left: -1px;
-}
-
 .radio-wrapper .rc-checkbox-inner {
     border-radius: 50%;
 }
@@ -89,7 +84,7 @@ body .rc-checkbox:hover .rc-checkbox-inner, body .rc-checkbox-input:focus + .rc-
     border-color: #3a70ba;
 }
 
-.checkbox-wrapper .rc-checkbox.rc-checkbox-checked .rc-checkbox-inner:after {
+.pda-modal .checkbox-wrapper .rc-checkbox.rc-checkbox-checked .rc-checkbox-inner:after {
     left: 4px;
     top: 1px;
     width: 4px;

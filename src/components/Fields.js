@@ -47,7 +47,9 @@ const getFieldComponent = (field, components) => {
         ) : Select,
         phone: PhoneInput,
         boolean: Boolean,
-        choice: Select,
+        choice: prop('checkboxes', settings) ? (
+            prop('multiple', settings) ? Checkbox : Radio
+        ) : Select,
         country: LocationSelect,
         region: LocationSelect,
         city: LocationSelect,
