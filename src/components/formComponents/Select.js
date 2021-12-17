@@ -166,7 +166,7 @@ class Select extends Component {
                 options={options}
                 mode={multiple ? 'multiple' : 'single'}
                 {...(isError ? { open: false } : {})}
-                virtual={false}
+                virtual
                 allowClear
                 showArrow
                 getPopupContainer={() => this.selectContainer.current}
