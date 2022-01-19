@@ -243,12 +243,19 @@ class HtmlOpdForm extends Component {
                     }
                 }
 
-                const separateField = OPD_DATA_CHECKBOXES[input.getAttribute('data-separate-field') || input.getAttribute('id')];
+                const separateField = input.getAttribute('data-separate-field');
 
                 if (separateField) {
                     const value = input.type === 'checkbox' ? input.checked : input.value;
-                    values[separateField] = value;
+                    const id = OPD_DATA_CHECKBOXES[separateField];
+                    values[id] = value;
                     form.change(separateField, value);
+                }
+
+                const fixedField = OPD_DATA_CHECKBOXES[input.getAttribute('id')];
+                if (fixedField) {
+                    const value = input.type === 'checkbox' ? input.checked : input.value;
+                    values[separateField] = value;
                 }
             }, inputs);
 
