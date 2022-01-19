@@ -127,11 +127,15 @@ export const getHtml = body => `
 const TEXT_FIELDS = ['text', 'email', 'phone', 'date'];
 const SELECT_FIELDS = ['dictionary', 'company_dictionary', 'list', 'city', 'country', 'region', 'money'];
 const OPD_DATA_CHECKBOXES = {
+    'accept': 'accept',
     'acceptCheckbox': 'accept',
     'opdAccept': 'accept',
+    'purpose': 'purpose',
     'purposeCheckbox': 'purpose',
     'opdPurpose': 'purpose',
+    'mailing': 'mailing',
     'mailingCheckbox': 'mailing',
+    'transmission': 'transmission',
     'transmissionCheckbox': 'transmission',
 };
 
