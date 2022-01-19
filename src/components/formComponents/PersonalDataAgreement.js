@@ -113,8 +113,9 @@ class PersonalDataAgreementComponent extends Component {
         this.props.input.onChange(html ? {
             value: !!html,
             htmlContent: html,
-            data,
+            ...(data || {}),
         } : null);
+
         this.setState({ openedHtml: false });
     }
 

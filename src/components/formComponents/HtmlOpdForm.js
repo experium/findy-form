@@ -126,6 +126,14 @@ export const getHtml = body => `
 
 const TEXT_FIELDS = ['text', 'email', 'phone', 'date'];
 const SELECT_FIELDS = ['dictionary', 'company_dictionary', 'list', 'city', 'country', 'region', 'money'];
+const OPD_DATA_CHECKBOXES = {
+    'acceptCheckbox': 'accept',
+    'opdAccept': 'accept',
+    'purposeCheckbox': 'purpose',
+    'opdPurpose': 'purpose',
+    'mailingCheckbox': 'mailing',
+    'transmissionCheckbox': 'transmission',
+};
 
 class HtmlOpdForm extends Component {
     state = {
@@ -231,7 +239,7 @@ class HtmlOpdForm extends Component {
                     }
                 }
 
-                const separateField = input.getAttribute('data-separate-field');
+                const separateField = OPD_DATA_CHECKBOXES[input.getAttribute('data-separate-field') || input.getAttribute('id')];
 
                 if (separateField) {
                     const value = input.type === 'checkbox' ? input.checked : input.value;
