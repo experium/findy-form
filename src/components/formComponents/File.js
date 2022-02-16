@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { prop, append, remove, isEmpty, path, pathOr, join, values } from 'ramda';
+import { prop, append, remove, isEmpty, path, pathOr, join, values, keys, last } from 'ramda';
 import Modal from 'react-responsive-modal';
 import { withTranslation } from 'react-i18next';
 import getusermedia from 'getusermedia';
@@ -55,8 +55,8 @@ class File extends Component {
             const multiple = prop('multiple', settings);
             const type = prop('type', settings);
             const fd = new FormData();
-
-            const validFileType = checkFileType(type, file.type, allowFileExtensions);
+            const fileExtenstion = last(`${file.name}`.split('.'));
+            const validFileType = checkFileType(type, file.type, fileExtenstion, allowFileExtensions);
 
             fd.append('file', file);
             fd.append('name', file.name);
@@ -77,6 +77,9 @@ class File extends Component {
                         }
                     })
                     .then(data => {
+                        const { input: { name } } = this.props;
+                        const fileName = data.filename;
+
                         if (data.statusCode === 400) {
                             setInputError(getFileErrorText(data.message));
                             return this.setState({ error: data.message || true, loading: false });
@@ -86,14 +89,13 @@ class File extends Component {
                             return this.setState({ error: true, loading: false });
                         }
 
-                        const { input: { name } } = this.props;
-                        const fileName = data.filename;
                         const url = getFileUrl ? getFileUrl(data.id) : data.id;
                         this.setState({ loading: false });
 
                         const fileItem = {
                             url,
                             text: fileName,
+                            extenstion: fileExtenstion,
                             contentType: file.type,
                             type,
                         };
@@ -118,6 +120,7 @@ class File extends Component {
             } else {
                 const fileItem = {
                     text: file.name,
+                    extenstion: fileExtenstion,
                     contentType: file.type,
                     type,
                 };
@@ -250,7 +253,7 @@ class File extends Component {
 
         if (allowFileExtensions) {
             return allowFileExtensions[type] ? (
-                join(',', values(allowFileExtensions[type]))
+                `.${join(', .', keys(allowFileExtensions[type]))}`
             ) : TYPES[type];
         } else {
             return TYPES[type];
@@ -263,7 +266,7 @@ class File extends Component {
         const values = value ? (multiple ? value : [value]) : [];
         const ModalContent = MODAL_CONTENT[type];
         const { loading, error } = this.state;
-
+        console.log(this.getAccept(type));
         return <div id={`${name}-file`}>
             { !isEmpty(value) && (
                 <div className={styles.fileList}>

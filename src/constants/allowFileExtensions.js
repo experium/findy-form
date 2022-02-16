@@ -5,7 +5,7 @@ export const defaultAllowFileExtensions = {
         html: 'text/html',
         odt: 'application/vnd.oasis.opendocument.text',
         pdf: 'application/pdf',
-        rtf: 'application/rtf, text/rtf, .rtf',
+        rtf: 'application/rtf',
         txt: 'text/plain',
         xls: 'application/vnd.ms-excel',
         xlsx: 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet',
@@ -26,5 +26,5 @@ export const TYPES = {
 
 export const VALIDATION_FILE_TYPES = {
     image: 'jpeg, tiff, png',
-    document: 'doc, docx, html, odt, pdf, rtf, xls, xlsx',
+    document: 'doc, docx, html, odt, pdf, rtf, txt, xls, xlsx',
 };

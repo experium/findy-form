@@ -11,18 +11,20 @@ import { defaultAllowFileExtensions, VALIDATION_FILE_TYPES } from '../constants/
 
 const checkDate = value => !value || value === 'incomplete';
 
-export const checkFileType = (fileType, mimeType, allowFileExtensions = {}) => {
+export const checkFileType = (fileType, mimeType, extenstion, allowFileExtensions = {}) => {
     switch (fileType) {
         case 'audio':
             return startsWith('audio', mimeType);
         case 'video':
             return startsWith('video', mimeType);
-        default:
+        case 'image':
             const allowFileTypes = join(',', values(
                 allowFileExtensions && !isEmpty(allowFileExtensions[fileType]) ? allowFileExtensions[fileType] : defaultAllowFileExtensions[fileType]
             ));
 
             return allowFileTypes ? contains(mimeType, split(',', replace(/\s/g, '', allowFileTypes))) : true;
+        default:
+            return allowFileTypes ? allowFileExtensions[fileType] : defaultAllowFileExtensions[fileType];
     }
 };
 export const getFileTypeMessage = (type, allowFileExtensions = {}) => {
@@ -194,13 +196,13 @@ const rules = {
 
                 value.forEach(value => {
                     if (result) {
-                        result = checkFileType(value.type, value.contentType, allowFileExtensions);
+                        result = checkFileType(value.type, value.contentType, value.extenstion, allowFileExtensions);
                     }
                 });
 
                 return result;
             } else {
-                return checkFileType(value.type, value.contentType, allowFileExtensions);
+                return checkFileType(value.type, value.contentType, value.extenstion, allowFileExtensions);
             }
         },
     }),
