@@ -12,7 +12,7 @@ import styles from '../../styles/index.module.css';
 import formStyles from '../../styles/index.module.css';
 import Spinner from './Spinner';
 import { getFileErrorText } from '../../utils/file';
-import { TYPES } from '../../constants/allowFileExtensions';
+import { TYPES, defaultAllowFileExtensions } from '../../constants/allowFileExtensions';
 import { checkFileType, getFileTypeMessage } from '../../utils/validation';
 
 const FILE_TYPES = {
@@ -56,6 +56,7 @@ class File extends Component {
             const type = prop('type', settings);
             const fd = new FormData();
             const fileExtenstion = last(`${file.name}`.split('.'));
+            const fileType = file.type || path([type, fileExtenstion], defaultAllowFileExtensions);
             const validFileType = checkFileType(type, file.type, fileExtenstion, allowFileExtensions);
 
             fd.append('file', file);
@@ -96,7 +97,7 @@ class File extends Component {
                             url,
                             text: fileName,
                             extenstion: fileExtenstion,
-                            contentType: file.type,
+                            contentType: fileType,
                             type,
                         };
 
@@ -121,7 +122,7 @@ class File extends Component {
                 const fileItem = {
                     text: file.name,
                     extenstion: fileExtenstion,
-                    contentType: file.type,
+                    contentType: fileType,
                     type,
                 };
 
