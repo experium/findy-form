@@ -356,7 +356,9 @@ class Fields extends Component {
                     <div key={field.field}>
                         { field.type === 'composite' ?
                             <Fragment>
-                                <h2>{ language ? pathOr(field.label, ['translations', 'label', language], field) : field.label }</h2>
+                                { includes(path(['settings', 'showLabel'], field), [true, undefined]) ? (
+                                    <h2>{ language ? pathOr(field.label, ['translations', 'label', language], field) : field.label }</h2>
+                                ) : null}
                                 { path(['settings', 'multiple'], field) ?
                                     <FieldArray
                                         name={field.field}

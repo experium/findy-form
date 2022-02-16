@@ -266,7 +266,7 @@ class File extends Component {
         const values = value ? (multiple ? value : [value]) : [];
         const ModalContent = MODAL_CONTENT[type];
         const { loading, error } = this.state;
-        console.log(this.getAccept(type));
+
         return <div id={`${name}-file`}>
             { !isEmpty(value) && (
                 <div className={styles.fileList}>
