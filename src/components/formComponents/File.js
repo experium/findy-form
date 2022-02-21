@@ -3,6 +3,7 @@ import { prop, append, remove, isEmpty, path, pathOr, join, values, keys, last }
 import Modal from 'react-responsive-modal';
 import { withTranslation } from 'react-i18next';
 import getusermedia from 'getusermedia';
+import axios from 'axios';
 
 import withFieldWrapper from '../hocs/withFieldWrapper';
 import ImageFile from './ImageFile';
@@ -66,18 +67,13 @@ class File extends Component {
                 this.setState({ loading: true, error: false });
                 setInputError(undefined);
 
-                fetch(postFileUrl, {
-                    method: 'POST',
-                    body: fd
+                axios.post(postFileUrl, fd, {
+                    headers: {
+                        'Content-Type': 'multipart/form-data',
+                    },
                 })
                     .then(response => {
-                        if (!response.ok && response.status !== 400) {
-                            throw new Error();
-                        } else {
-                            return response.json();
-                        }
-                    })
-                    .then(data => {
+                        const { data } = response;
                         const { input: { name } } = this.props;
                         const fileName = data.filename;
 
@@ -115,7 +111,7 @@ class File extends Component {
                         }
                     })
                     .catch((error) => {
-                        setInputError(getFileErrorText(error));
+                        setInputError(getFileErrorText(pathOr('', ['response', 'data', 'message'], error)));
                         this.setState({ error: true });
                     });
             } else {
@@ -309,10 +305,10 @@ class File extends Component {
                             value=''
                             onChange={this.onChange}
                             accept={this.getAccept(type)}
-                            disabled={disabled || loading && !error}
+                            disabled={disabled || (loading && !error)}
                         />
                         <label htmlFor={name} className={`${disabled ? 'disabled' : ''}`}>
-                            { loading && !error && <Spinner /> }
+                            { (loading && !error) && <Spinner /> }
                             <span className='button-text'>
                                 {t('upload')}
                             </span>
