@@ -268,6 +268,8 @@ class File extends Component {
         const ModalContent = MODAL_CONTENT[type];
         const { loading, error } = this.state;
 
+        const isLoading = loading && !error;
+
         return <div id={`${name}-file`}>
             { !isEmpty(value) && (
                 <div className={styles.fileList}>
@@ -309,10 +311,10 @@ class File extends Component {
                             value=''
                             onChange={this.onChange}
                             accept={this.getAccept(type)}
-                            disabled={disabled || loading && !error}
+                            disabled={disabled || isLoading}
                         />
                         <label htmlFor={name} className={`${disabled ? 'disabled' : ''}`}>
-                            { loading && !error && <Spinner /> }
+                            { isLoading && <Spinner /> }
                             <span className='button-text'>
                                 {t('upload')}
                             </span>
@@ -321,7 +323,7 @@ class File extends Component {
                 }
                 { (!multiple && value.length > 1) || !BTN_TEXT[type] ? null : (
                     type && (
-                        <button disabled={loading && !error || disabled} className={formStyles.formBtn} type='button' onClick={this.openModal}>
+                        <button disabled={isLoading || disabled} className={formStyles.formBtn} type='button' onClick={this.openModal}>
                             { t(BTN_TEXT[type]) }
                         </button>
                     )
