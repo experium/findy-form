@@ -26,7 +26,8 @@ const VersionCheck = ({
                             }
                         });
                     }
-                });
+                })
+                .catch(error => console.log(error));
         };
 
         getIndexPage();
