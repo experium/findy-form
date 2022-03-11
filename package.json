@@ -2,8 +2,8 @@
   "name": "@experium/index-version-check",
   "version": "1.0.0",
   "main": "./lib/index.js",
-  "homepage": "https://experium.github.io/findy-form/index-version-check",
-  "repository": "https://github.com/experium/findy-form/index-version-check",
+  "homepage": "https://experium.github.io/findy-form/tree/index-version-check",
+  "repository": "https://github.com/experium/findy-form/tree/index-version-check",
   "publishConfig": {
     "access": "public",
     "cache": "~/.npm"
