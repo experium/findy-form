@@ -1,0 +1,28 @@
+.version-check-banner {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    min-height: 50px;
+    padding: 10px;
+    font-size: 1.1em;
+    z-index: 9000;
+    text-align: center;
+    background-color: #f54d2e;
+    border-bottom: 1px solid #fff;
+    color: #fff;
+    user-select: none;
+    padding-right: 40px;
+}
+
+.version-check-banner .version-check-update, .version-check-banner .version-check-icon {
+    cursor: pointer;
+}
+
+.version-check-banner .anticon {
+    display: block;
+    height: 30px;
+    width: 30px;
+    line-height: 30px;
+    margin-right: -30px;
+    float: right;
+}
