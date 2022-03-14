@@ -112,7 +112,7 @@ class Select extends Component {
 
         const filteredOptions = filter(allPass([
             item => {
-                if (countryParent || countryParent) {
+                if (countryParent || regionParent) {
                     const regionEqual = regionParent ? regionParent === item.region : true;
                     const countryEqual = countryParent ? countryParent === item.country : true;
 
