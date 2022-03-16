@@ -172,7 +172,7 @@ class Form extends Component {
 
             if (scrollContainerElement) {
                 scrollContainerElement.scrollTo({
-                    top: invalidField.getBoundingClientRect().top + scrollContainerElement.scrollTop - invalidField.getBoundingClientRect().top - 15,
+                    top: invalidField.getBoundingClientRect().top + scrollContainerElement.scrollTop - scrollContainerElement.getBoundingClientRect().top - 15,
                     behavior: 'smooth'
                 });
             } else {
