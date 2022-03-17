@@ -22,7 +22,7 @@
     "qs": "^6.9.4",
     "ramda": "^0.27.1",
     "rc-checkbox": "^2.3.2",
-    "rc-select": "^12.1.6",
+    "rc-select": "^14.0.5",
     "rc-tree-select": "^4.1.2",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
