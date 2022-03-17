@@ -238,6 +238,7 @@ class Fields extends Component {
             language,
             components,
             htmlOpd,
+            htmlOpdStyles,
             getOpdValues,
             serverErrors,
             fields,
@@ -276,6 +277,7 @@ class Fields extends Component {
                 extra={path(['extra'], field)}
                 errors={errors}
                 htmlOpd={htmlOpd}
+                htmlOpdStyles={htmlOpdStyles}
                 getOpdValues={getOpdValues}
                 form={form}
                 onChange={this.onChangeQuestion(field)}
@@ -317,6 +319,7 @@ class Fields extends Component {
                 extra={path(['extra'], field)}
                 errors={errors}
                 htmlOpd={htmlOpd}
+                htmlOpdStyles={htmlOpdStyles}
                 getOpdValues={getOpdValues}
                 form={form}
                 onChange={this.onChangeQuestion(field)}

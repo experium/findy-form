@@ -205,6 +205,7 @@ class Form extends Component {
             submitting: externalSubmitting,
             serverErrors,
             htmlAttrs,
+            html,
             captcha,
             captchaOptions,
             customValidation,
@@ -258,6 +259,7 @@ class Form extends Component {
                                     allowFileExtensions={this.props.allowFileExtensions}
                                     serverErrors={this.props.serverErrors}
                                     htmlOpd={this.props.htmlOpd}
+                                    htmlOpdStyles={this.props.htmlOpdStyles}
                                     getOpdValues={this.props.getOpdValues}
                                     renderOpdLabel={this.props.renderOpdLabel}
                                     setFormState={mutate => this.setState(mutate)}

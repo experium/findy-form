@@ -94,7 +94,7 @@ const commonStyle = `
     }
 `;
 
-export const getHtml = body => `
+export const getHtml = (body, customStyles) => `
     <!DOCTYPE html>
     <html lang="en">
         <head>
@@ -102,6 +102,7 @@ export const getHtml = body => `
             <meta name="viewport" content="width=device-width, initial-scale=1.0">
             <title>OPD</title>
             <style>
+                ${customStyles || ''}
                 ${commonStyle}
                 .opd-html-form {
                     font-family: Arial;
@@ -210,6 +211,7 @@ class HtmlOpdForm extends Component {
     }
 
     onSubmit = formProps => {
+        const { htmlOpdStyles } = this.props;
         const form = path(['form'], formProps);
         const inputs = this.form.querySelectorAll('input');
         const valid = all(input => {
@@ -259,18 +261,21 @@ class HtmlOpdForm extends Component {
                 }
             }, inputs);
 
-            this.props.onSubmit(getHtml(this.form.innerHTML), values);
+            this.props.onSubmit(getHtml(this.form.innerHTML, htmlOpdStyles), values);
         }
     }
 
     render() {
-        const { formProps, t, htmlAttrs, onClose, acceptBtn } = this.props;
+        const { formProps, t, htmlAttrs, htmlOpdStyles, onClose, acceptBtn } = this.props;
         const html = this.state.value || this.props.html;
 
         return <Fragment>
             <div>
                 <div ref={node => this.valueHtml = node} style={{ display: 'none' }} dangerouslySetInnerHTML={{ __html: path(['value', 'htmlContent'], this.props) }} />
-                <style>{commonStyle}</style>
+                <style>
+                    {htmlOpdStyles || ''}
+                    {commonStyle}
+                </style>
                 <button onClick={onClose} type='button' className='form-button react-responsive-modal-closeButton pda-modal-close-button' data-testid='close-button' {...getAttrs('opdClose', htmlAttrs)}>
                     <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 36 36" data-testid="close-icon"><path d="M28.5 9.62L26.38 7.5 18 15.88 9.62 7.5 7.5 9.62 15.88 18 7.5 26.38l2.12 2.12L18 20.12l8.38 8.38 2.12-2.12L20.12 18z"></path></svg>
                 </button>

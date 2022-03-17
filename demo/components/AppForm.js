@@ -217,6 +217,7 @@ class AppForm extends Component {
                                 language={this.state.language}
                                 components={components}
                                 htmlOpd={htmlOpd}
+                                htmlOpdStyles={'.opd-html-form div > div { text-align: justify; }'}
                                 serverErrors={error}
                                 allowFileExtensions={allowFileExtensions}
                                 // initialValues={{
@@ -275,6 +276,7 @@ class AppForm extends Component {
                                         'data-analytics-module-name': 'application submission',
                                     },
                                 }}
+
                                 excludeDictionary={{
                                     'PplEduLevel': [6]
                                 }}

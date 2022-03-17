@@ -195,6 +195,7 @@ class PersonalDataAgreementComponent extends Component {
                                         getOpdValues={() => this.getOpdValues(formProps)}
                                         htmlAttrs={htmlAttrs}
                                         html={this.props.htmlOpd || constructorOpd}
+                                        htmlOpdStyles={this.props.htmlOpdStyles}
                                         acceptBtn={pathOr(path(['acceptButtonLabel'], opdSettings), ['translations', 'acceptButtonLabel', language], opdSettings)} />
                                 )}
                             </FormSpy>
