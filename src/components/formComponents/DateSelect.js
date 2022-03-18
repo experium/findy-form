@@ -144,48 +144,50 @@ class DateSelect extends Component {
         const { day, month, year } = this.state;
         const options = t('MONTHS', { returnObjects: true });
 
-        return <div id={name} className={`jobot-forms__formDateSelect ${styles.formDateSelect}`} ref={this.selectContainer}>
-            { showDay &&
-                <Masked
-                    id={`${name}-day`}
-                    className={styles.formInput}
-                    value={day}
-                    onChange={this.onChangeDay}
-                    onBlur={this.onBlurDay}
-                    mask={DAY_MASK}
-                    placeholderChar={'\u2000'}
-                    placeholder={t('placeholders.datePicker.day')}
-                    keepCharPositions={false}
-                    disabled={disabled}
-                    guide />
-            }
-            { showMonth &&
-                <Select
-                    id={`${name}-month`}
-                    disabled={disabled}
-                    value={month || undefined}
-                    onChange={this.onChangeMonth}
-                    options={options}
-                    placeholder={t('placeholders.datePicker.month')}
-                    prefixCls='jobot-forms-rc-select'
-                    className='jobot-forms-month-select'
-                    getPopupContainer={() => this.selectContainer.current}
-                />
-            }
-            { showYear &&
-                <Masked
-                    id={`${name}-year`}
-                    disabled={disabled}
-                    className={styles.formInput}
-                    value={year}
-                    onChange={this.onChangeYear}
-                    onBlur={this.onBlurYear}
-                    mask={YEAR_MASK}
-                    placeholderChar={'\u2000'}
-                    placeholder={t('placeholders.datePicker.year')}
-                    keepCharPositions={false}
-                    guide />
-            }
+        return <div ref={this.selectContainer}>
+            <div id={name} className={`jobot-forms__formDateSelect ${styles.formDateSelect}`}>
+                { showDay &&
+                    <Masked
+                        id={`${name}-day`}
+                        className={styles.formInput}
+                        value={day}
+                        onChange={this.onChangeDay}
+                        onBlur={this.onBlurDay}
+                        mask={DAY_MASK}
+                        placeholderChar={'\u2000'}
+                        placeholder={t('placeholders.datePicker.day')}
+                        keepCharPositions={false}
+                        disabled={disabled}
+                        guide />
+                }
+                { showMonth &&
+                    <Select
+                        id={`${name}-month`}
+                        disabled={disabled}
+                        value={month || undefined}
+                        onChange={this.onChangeMonth}
+                        options={options}
+                        placeholder={t('placeholders.datePicker.month')}
+                        prefixCls='jobot-forms-rc-select'
+                        className='jobot-forms-month-select'
+                        getPopupContainer={() => this.selectContainer.current}
+                    />
+                }
+                { showYear &&
+                    <Masked
+                        id={`${name}-year`}
+                        disabled={disabled}
+                        className={styles.formInput}
+                        value={year}
+                        onChange={this.onChangeYear}
+                        onBlur={this.onBlurYear}
+                        mask={YEAR_MASK}
+                        placeholderChar={'\u2000'}
+                        placeholder={t('placeholders.datePicker.year')}
+                        keepCharPositions={false}
+                        guide />
+                }
+            </div>
         </div>;
     }
 }
