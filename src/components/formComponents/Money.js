@@ -16,6 +16,12 @@ const customStyle = {
 };
 
 class Money extends Component {
+    constructor(props) {
+        super(props);
+
+        this.selectContainer = React.createRef();
+    }
+
     componentDidMount() {
         const { getDictionary } = this.props;
         const urlParams = `?pagination=${encodeURI('{"offset": 0,"limit": 0 }')}`;
@@ -90,7 +96,7 @@ class Money extends Component {
                         )}
                     </Field>
                 </div>
-                <div className={styles.currencyField}>
+                <div className={styles.currencyField} ref={this.selectContainer}>
                     <Field
                         key={`${name}-${singleCurrency}`}
                         name={`${name}.currency`}
@@ -107,6 +113,7 @@ class Money extends Component {
                                 notFoundContent={t('noOptionsMessage')}
                                 placeholder={t('placeholders.salaryCurrency')}
                                 prefixCls='jobot-forms-rc-select'
+                                getPopupContainer={() => this.selectContainer.current}
                             />
                         )}
                     </Field>
