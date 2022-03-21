@@ -103,7 +103,7 @@ const rules = {
                     return true;
                 }
 
-                return value.length > minLength;
+                return value.length >= minLength;
             }
         }),
     phone: field => yup.string().nullable().test({
