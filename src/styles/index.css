@@ -9,16 +9,27 @@
     text-align: center;
     background-color: #f54d2e;
     border-bottom: 1px solid #fff;
-    color: #fff;
+    color: #eee;
     user-select: none;
     padding-right: 40px;
+    line-height: 30px;
 }
 
-.version-check-banner .version-check-update, .version-check-banner .version-check-icon {
+.version-check-update {
+    text-decoration: none;
+    cursor: pointer;
+    color: #fff;
+}
+
+.version-check-update:hover {
+    color: #eee;
+}
+
+.version-check-banner .version-check-update, .version-check-banner .version-close-icon, .version-check-banner .version-icon {
     cursor: pointer;
 }
 
-.version-check-banner .anticon {
+.version-check-banner .version-close-icon {
     display: block;
     height: 30px;
     width: 30px;

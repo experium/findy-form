@@ -7,7 +7,7 @@
         {({ needUpdate, update, close }) => needUpdate && (
             <div className='version-check-banner'>
                 <CloseOutlined onClick={close} />
-                Доступна новая версия сервиса - <b className='update' onClick={update}>обновите страницу</b>
+                Доступна новая версия - <a className='version-check-update' onClick={update}>обновить</a>
             </div>
         )}
     </VersionCheck>
