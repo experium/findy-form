@@ -1,8 +1,12 @@
-import { useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
+
+import { Message } from './Banner';
 
 const VersionCheck = ({
     interval = 10,
     indexRoute = '/index.html',
+    message,
+    updateMessage,
     children
 }) => {
     const [needUpdate, setNeedUpdate] = useState(false);
@@ -51,8 +55,9 @@ const VersionCheck = ({
     };
 
     return needUpdate ?
-        typeof children === 'function' ? children({ needUpdate, update, close }) : children
-        : null;
+        typeof children === 'function' ? children({ needUpdate, update, close }) : children || (
+            <Message needUpdate={needUpdate} update={update} close={close} message={message} updateMessage={updateMessage} />
+        ) : null;
 };
 
 export default VersionCheck;

@@ -1,4 +1,5 @@
-import React from 'react';
+import React, { useEffect } from 'react';
+import { message } from 'antd';
 
 import '../styles/index.css';
 
@@ -17,3 +18,18 @@ export const Banner = ({ needUpdate, update, close, icon, closeIcon, message = D
         )} { message } - <a className='version-check-update' onClick={update}>{ updateMessage }</a>
     </div>
 );
+
+export const Message = ({ needUpdate, update, message: text = DEFAULT_MESSAGE, updateMessage = DEFAULT_UPDATE_MESSAGE }) => {
+    useEffect(() => {
+        if (needUpdate) {
+            message.warning({
+                content: (
+                    <span>{ text } - <a onClick={update}>{ updateMessage }</a></span>
+                ),
+                duration: 0,
+            });
+        }
+    }, [needUpdate]);
+
+    return null;
+};

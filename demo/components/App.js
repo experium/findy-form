@@ -7,11 +7,7 @@ export default class App extends Component {
     render() {
         return <div>
             <h1>Demo index version check lib</h1>
-            <VersionCheck interval={0.1}>
-                { props => (
-                    <Banner {...props} icon={<WarningOutlined />} closeIcon={<CloseOutlined />} />
-                )}
-            </VersionCheck>
+            <VersionCheck interval={0.1} />
         </div>;
     }
 }

@@ -20,6 +20,8 @@ Form components
 - `interval`: minutes to recheck new version (default - 10)
 - `indexRoute`: get url for response check (default - 'index.html')
 
+- `children`: if no children - antd message will use instead
+
 ### RenderProps
 
 - `needUpdate`
