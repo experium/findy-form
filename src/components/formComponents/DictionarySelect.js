@@ -10,7 +10,6 @@ import styles from '../../styles/index.module.css';
 import { CompanyDictionaryContext } from '../../context/CompanyDictionary';
 import { translateOptionLabel } from '../../utils/i18n';
 import withFieldWrapper from '../hocs/withFieldWrapper';
-import { sorterByLabel } from './Select';
 
 class Select extends Component {
     constructor(props) {
@@ -273,7 +272,6 @@ class Select extends Component {
                     onChange={this.onChange}
                     mode={multiple ? 'multiple' : 'single'}
                     showSearch={options.length > 10}
-                    filterSort={sorterByLabel}
                     optionFilterProp='label'
                     notFoundContent={t('noOptionsMessage')}
                     placeholder={placeholder}

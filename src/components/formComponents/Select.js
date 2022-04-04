@@ -157,7 +157,6 @@ class Select extends Component {
                 value={(this.allowUserValue() && this.state.other ? this.getUserValueQuestion().value : value) || undefined}
                 onChange={this.onChange}
                 showSearch={options.length > 10}
-                filterSort={sorterByLabel}
                 optionFilterProp='label'
                 placeholder={placeholder}
                 notFoundContent={t('noOptionsMessage')}
