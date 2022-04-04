@@ -22,6 +22,9 @@ install:
   tags:
     - runner2
   stage: install
+  before_script:
+    - npm set registry https://npm.dev.experium.net
+    - npm set //npm.dev.experium.net/:_authToken $NPM_TOKEN
   script:
     - yarn install --frozen-lockfile
   cache:
