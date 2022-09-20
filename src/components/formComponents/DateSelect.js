@@ -150,7 +150,7 @@ class DateSelect extends Component {
                     <Masked
                         id={`${name}-day`}
                         className={styles.formInput}
-                        value={day}
+                        value={day || ''}
                         onChange={this.onChangeDay}
                         onBlur={this.onBlurDay}
                         mask={DAY_MASK}
@@ -178,7 +178,7 @@ class DateSelect extends Component {
                         id={`${name}-year`}
                         disabled={disabled}
                         className={styles.formInput}
-                        value={year}
+                        value={year || ''}
                         onChange={this.onChangeYear}
                         onBlur={this.onBlurYear}
                         mask={YEAR_MASK}

@@ -297,7 +297,7 @@ class Fields extends Component {
         );
 
         return isLinked ? (
-            <LinkedFieldWrapper field={field} form={form}>
+            <LinkedFieldWrapper field={field} form={form} fieldName={fieldName}>
                 { renderLinkedField }
             </LinkedFieldWrapper>
         ) : (

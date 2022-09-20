@@ -19,7 +19,7 @@ class MaskedInput extends Component {
             id={name}
             disabled={disabled}
             className={`${styles.formInput} input`}
-            value={value}
+            value={value || ''}
             onChange={onChange}
             mask={mask}
             placeholderChar={'\u2000'}

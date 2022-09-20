@@ -4,12 +4,12 @@ import { path } from 'ramda';
 
 class LinkedFieldWatcher extends Component {
     componentDidUpdate(prev) {
-        const { value, field, linkType, linkValue } = this.props;
+        const { value, fieldName, linkType, linkValue } = this.props;
 
         if (prev.value !== value) {
-            const fieldName = path(['field'], field);
+            const isHidding = linkType === 'hide' || linkType === 'show';
             const valueMatch = value === linkValue;
-            const needClear = ((linkType === 'hide') && !valueMatch) || ((linkType === 'hide') && valueMatch);
+            const needClear = (isHidding && !valueMatch) || (isHidding && valueMatch);
 
             if (fieldName && needClear) {
                 this.props.form.change(fieldName, undefined);
@@ -24,19 +24,21 @@ class LinkedFieldWatcher extends Component {
 
 class LinkedFieldWrapper extends Component {
     render() {
-        const { field, form, children } = this.props;
+        const { field, fieldName, form, children } = this.props;
         const linkField = path(['settings', 'linkField'], field);
         const linkType = path(['settings', 'linkType'], field);
         const linkValue = path(['settings', 'linkValue'], field);
+        const required = field.required;
+        const parent = `${fieldName || ''}`.replace(field.field, '');
 
         return (
-            <Field name={linkField} subscription={{ value: true }}>
+            <Field name={`${parent}${linkField}`} subscription={{ value: true }}>
                 { ({ input: { value } }) => (
-                    <LinkedFieldWatcher value={value} field={field} form={form} linkType={linkType} linkValue={linkValue}>
+                    <LinkedFieldWatcher value={value} field={field} fieldName={fieldName} form={form} linkType={linkType} linkValue={linkValue}>
                         {(linkType === 'hide') ? (
-                            value === linkValue ? children({ required: true }) : null
+                            value === linkValue ? children({ required }) : null
                         ) : (linkType === 'show') ? (
-                            value !== linkValue ? children({ required: true }) : null
+                            value !== linkValue ? children({ required }) : null
                         ) : (
                             value !== linkValue ? children({ required: false }) : children({ required: true })
                         )}

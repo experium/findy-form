@@ -195,6 +195,12 @@ class AppForm extends Component {
                                     // assocPath([1, 'settings', 'linkValue'], '1'),
                                     // phone
                                     assocPath([0, 'settings', 'international'], true),
+                                    // show in block
+                                    // assocPath([1, 'settings', 'questions', 1, 'settings', 'linkField'],
+                                    //    path(['questions', 1, 'settings', 'questions', 2, 'field'], vacancy)
+                                    // ),
+                                    // assocPath([1, 'settings', 'questions', 1, 'settings', 'linkType'], 'show'),
+                                    // assocPath([1, 'settings', 'questions', 1, 'settings', 'linkValue'], true),
                                     pathOr([], ['questions']),
                                 )(vacancy)}
                                 onSubmit={form => {

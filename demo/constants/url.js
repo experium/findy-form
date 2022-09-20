@@ -1,5 +1,5 @@
-export const domain = process.env.DOMAIN || 'dev';
-export const company = 'heliosoft';
+export const domain = process.env.DOMAIN || 'demo';
+export const company = process.env.COMPANY || 'heliosoft';
 
 export const URL = `https://findy.${domain}.experium.net/api/graphql`;
 export const API_URL = `https://findy.${domain}.experium.net`;
