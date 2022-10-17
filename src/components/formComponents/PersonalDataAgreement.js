@@ -26,7 +26,7 @@ const getConstructorOpd = (opdSettings, language) => {
                 </div>`;
             case 'opdCheckbox':
                 return `${res}<div>
-                    <input type="checkbox" id="${cur.opdType}" ${path([cur.opdType, 'required'], opdSettings) ? 'required="required"' : ''} />
+                    <input type="checkbox" id="${cur.opdType}" name="${cur.opdType}" data-separate-field="${cur.opdType}" ${path([cur.opdType, 'required'], opdSettings) ? 'required="required"' : ''} />
                     <label for="${cur.opdType}">${pathOr('', [cur.opdType, 'label'], opdSettings)}</label>
                 </div>`;
             default:
