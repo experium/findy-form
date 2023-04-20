@@ -130,6 +130,7 @@ class AppForm extends Component {
         this.state = {
             error: false,
             language: localStorage.getItem('formLanguage') || 'en',
+            languageOrigin: localStorage.getItem('formLanguageOrigin') || 'en',
         };
 
         this.formRef = React.createRef();
@@ -167,6 +168,17 @@ class AppForm extends Component {
                                 }}
                                 options={LANGUAGES_OPTIONS}
                                 value={this.state.language}
+                            />
+                        </div>
+                        <div className='language-select'>
+                            <ReactSelect
+                                prefixCls='jobot-forms-rc-select'
+                                onChange={value => {
+                                    this.setState({ languageOrigin: value });
+                                    localStorage.setItem('formLanguageOrigin', value);
+                                }}
+                                options={LANGUAGES_OPTIONS}
+                                value={this.state.languageOrigin}
                             />
                         </div>
                     </div>
@@ -221,6 +233,7 @@ class AppForm extends Component {
                                 postFileUrl={`${POST_FILE}/${vacancy.id}`}
                                 getFileUrl={id => `${GET_FILE}/${id}`}
                                 language={this.state.language}
+                                languageOrigin={this.state.languageOrigin}
                                 components={components}
                                 htmlOpd={htmlOpd}
                                 htmlOpdStyles={'.opd-html-form div > div { text-align: justify; }'}

@@ -32,22 +32,22 @@ class MaskedInput extends Component {
 
 const languages = {
     et: 'ee',
-    en: 'ru'
+    en: false
 };
 
-export const PhoneInput = withFieldWrapper(props => {
-    const { input: { value, name }, onChange, disabled, placeholder, language } = props;
+const PhoneInput = withFieldWrapper(props => {
+    const { input: { value, name }, onChange, disabled, placeholder, language, languageOrigin } = props;
 
     return path(['settings', 'international'], props) ? (
         <FlagedInput
-            key={language === 'en' ? 'en' : 'ru'}
+            key={language}
             id={name}
             name={name}
             className={`${styles.formInput} input`}
             disabled={disabled}
-            country={languages[language] || language}
+            country={languages[languageOrigin || language] || languageOrigin || language}
             preferredCountries={['ru', 'by', 'ua', 'kz', 'uz', 'tj', 'lv', 'lt', 'ee']}
-            localization={language === 'en' ? undefined : ru}
+            localization={language === 'ru' ? ru : undefined}
             value={value}
             placeholder={placeholder}
             onChange={(value, country, e, formattedValue) => onChange(formattedValue)}
@@ -70,3 +70,5 @@ export const PhoneInput = withFieldWrapper(props => {
         />
     );
 });
+
+export default PhoneInput;

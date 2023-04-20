@@ -270,6 +270,7 @@ class Form extends Component {
                                     fieldsWithoutValidation={this.state.fieldsWithoutValidation}
                                     errors={this.state.errors}
                                     language={language}
+                                    languageOrigin={this.props.languageOrigin}
                                     customValidation={customValidation}
                                     updateOpdValuesOn={updateOpdValuesOn}
                                     company={company}

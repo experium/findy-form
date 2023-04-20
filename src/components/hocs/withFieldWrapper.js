@@ -26,12 +26,13 @@ export default WrappedComponent =>
         }
 
         onChange = value => {
-            const { onChange, field, form, form: { resetFieldState }, meta: { modified, submitting } } = this.props;
+            const { onChange, onChangeQuestion, field, form, form: { resetFieldState }, meta: { modified, submitting } } = this.props;
             const serverError = this.getServerError();
 
             if (!submitting) {
                 this.props.input.onChange(value);
                 onChange && onChange(value, form);
+                onChangeQuestion && onChangeQuestion(value, form);
             }
 
             if (serverError && modified) {

@@ -13,7 +13,7 @@ import PersonalDataAgreement from './formComponents/PersonalDataAgreement';
 import Select, { LocationSelect } from './formComponents/Select';
 import DictionarySelect from './formComponents/DictionarySelect';
 import TreeSelect from './formComponents/TreeSelect';
-import { PhoneInput } from './formComponents/MaskedInput';
+import PhoneInput from './formComponents/PhoneInput';
 import DateSelect from './formComponents/DateSelect';
 import File from './formComponents/File';
 import Radio from './formComponents/Radio';
@@ -236,6 +236,7 @@ class Fields extends Component {
             apiUrl,
             company,
             language,
+            languageOrigin,
             components,
             htmlOpd,
             htmlOpdStyles,
@@ -266,6 +267,7 @@ class Fields extends Component {
                 opdSettings={opdSettings}
                 company={company}
                 language={language}
+                languageOrigin={languageOrigin}
                 validate={validateField}
                 getDictionary={this.getDictionary}
                 dictionaryType={this.getDictionaryType(field)}
@@ -280,7 +282,6 @@ class Fields extends Component {
                 htmlOpdStyles={htmlOpdStyles}
                 getOpdValues={getOpdValues}
                 form={form}
-                onChange={this.onChangeQuestion(field)}
                 initialRequired={field.required}
                 fieldsWithoutValidation={fieldsWithoutValidation}
                 changeFieldValidation={changeFieldValidation}
@@ -291,6 +292,7 @@ class Fields extends Component {
                 selectHeight={selectHeight}
                 selectLineHeight={selectLineHeight}
                 updateOpdValues={updateOpdValues}
+                onChangeQuestion={this.onChangeQuestion(field)}
                 onChange={value => this.onChange(value, field)}
                 {...props}
             />
@@ -322,7 +324,6 @@ class Fields extends Component {
                 htmlOpdStyles={htmlOpdStyles}
                 getOpdValues={getOpdValues}
                 form={form}
-                onChange={this.onChangeQuestion(field)}
                 initialRequired={field.required}
                 fieldsWithoutValidation={fieldsWithoutValidation}
                 changeFieldValidation={changeFieldValidation}
@@ -333,6 +334,8 @@ class Fields extends Component {
                 selectHeight={selectHeight}
                 selectLineHeight={selectLineHeight}
                 language={language}
+                languageOrigin={languageOrigin}
+                onChangeQuestion={this.onChangeQuestion(field)}
                 onChange={value => this.onChange(value, field)}
             />
         );
