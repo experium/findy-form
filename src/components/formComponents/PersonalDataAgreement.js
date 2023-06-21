@@ -16,18 +16,18 @@ const getConstructorOpd = (opdSettings, language) => {
     const text = (opdConstructor || []).reduce((res, cur) => {
         switch (cur.type) {
             case 'question':
-                return `${res}<input name="${cur.question}" placeholder="${cur.placeholder || ''}" type="text" ${cur.required ? 'required' : ''} /> `;
+                return `${res}<input name="${cur.question}" placeholder="${path(['translations', language], cur) || cur.placeholder || ''}" type="text" ${cur.required ? 'required' : ''} /> `;
             case 'formated':
-                return res + (cur.text || '');
+                return res + (path(['translations', language], cur) || cur.text || '');
             case 'checkbox':
                 return `${res}<div>
                     <input type="checkbox" id="${`checkbox-${cur.id}`}" ${cur.required ? 'required="required"' : ''} />
-                    <label for="${`checkbox-${cur.id}`}">${cur.label || ''}</label>
+                    <label for="${`checkbox-${cur.id}`}">${path(['translations', language], cur) || cur.label || ''}</label>
                 </div>`;
             case 'opdCheckbox':
                 return `${res}<div>
                     <input type="checkbox" id="${cur.opdType}" name="${cur.opdType}" data-separate-field="${cur.opdType}" ${path([cur.opdType, 'required'], opdSettings) ? 'required="required"' : ''} />
-                    <label for="${cur.opdType}">${pathOr('', [cur.opdType, 'label'], opdSettings)}</label>
+                    <label for="${cur.opdType}">${pathOr('', [cur.opdType, 'translations', language], opdSettings) || pathOr('', [cur.opdType, 'label'], opdSettings)}</label>
                 </div>`;
             default:
                 return res;
@@ -61,7 +61,7 @@ class PersonalDataAgreementComponent extends Component {
     closeHtml = () => this.setState({ openedHtml: false });
 
     getLabel = () => {
-        const { t, renderOpdLabel, opd, opdSettings, language } = this.props;
+        const { t, renderOpdLabel, opd, opdSettings, pdaLanguage: language } = this.props;
         const label = t('opdLabelCustom');
         const modalLinkProps = {
             className: opd ? styles.formLink : styles.withoutOpd,
@@ -145,7 +145,7 @@ class PersonalDataAgreementComponent extends Component {
     }
 
     render() {
-        const { opdSettings, language } = this.props;
+        const { opdSettings, pdaLanguage: language } = this.props;
         const isHtmlOpd = this.isHtmlOpd();
         const constructorOpd = path(['useConstructor'], opdSettings) ? getConstructorOpd(opdSettings, language) : null;
 

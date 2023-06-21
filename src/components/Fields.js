@@ -237,6 +237,7 @@ class Fields extends Component {
             company,
             language,
             languageOrigin,
+            pdaLanguage,
             components,
             htmlOpd,
             htmlOpdStyles,
@@ -267,6 +268,7 @@ class Fields extends Component {
                 opdSettings={opdSettings}
                 company={company}
                 language={language}
+                pdaLanguage={pdaLanguage}
                 languageOrigin={languageOrigin}
                 validate={validateField}
                 getDictionary={this.getDictionary}

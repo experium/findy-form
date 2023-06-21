@@ -5,7 +5,7 @@ import i18n from '../utils/i18n';
 
 import React, { Component } from 'react';
 import { Form as FinalFormForm, Field, FormSpy } from 'react-final-form';
-import { pathOr, prop, equals, isEmpty, forEach, path, includes, assocPath } from 'ramda';
+import { head, pathOr, prop, equals, isEmpty, forEach, path, includes, assocPath } from 'ramda';
 import arrayMutators from 'final-form-arrays';
 import { withTranslation } from 'react-i18next';
 import cx from 'classnames';
@@ -45,6 +45,7 @@ class Form extends Component {
         dictionaryOptions: {},
         components: {},
         language: RU,
+        pdaLanguage: RU,
         opdSubmitDisabled: true,
         excludeDictionary: {},
         renameDictionary: {},
@@ -58,10 +59,12 @@ class Form extends Component {
     constructor(props) {
         super(props);
 
-        const language = props.language || RU;
+        const pdaLanguage = props.pdaLanguage || props.language || RU;
+        const language = head((props.language || RU).split('-'));
 
         this.state = {
             language,
+            pdaLanguage,
             dictionaries: {},
             errors: {},
             initialValues: getInitialValues(props.initialValues, props.fields, props.captchaOptions),
@@ -195,9 +198,12 @@ class Form extends Component {
 
     render() {
         const {
+            language,
+            pdaLanguage,
+        } = this.state;
+        const {
             fields,
             company,
-            language,
             opdSubmitDisabled,
             formRender,
             t,
@@ -270,6 +276,7 @@ class Form extends Component {
                                     fieldsWithoutValidation={this.state.fieldsWithoutValidation}
                                     errors={this.state.errors}
                                     language={language}
+                                    pdaLanguage={pdaLanguage}
                                     languageOrigin={this.props.languageOrigin}
                                     customValidation={customValidation}
                                     updateOpdValuesOn={updateOpdValuesOn}
