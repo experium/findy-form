@@ -129,8 +129,9 @@ class AppForm extends Component {
 
         this.state = {
             error: false,
-            language: localStorage.getItem('formLanguage') || 'en',
-            languageOrigin: localStorage.getItem('formLanguageOrigin') || 'en',
+            language: localStorage.getItem('formLanguage') || 'ru',
+            pdaLanguage: localStorage.getItem('formPdaLanguage') || null,
+            languageOrigin: localStorage.getItem('formLanguageOrigin') || null,
         };
 
         this.formRef = React.createRef();
@@ -174,11 +175,24 @@ class AppForm extends Component {
                             <ReactSelect
                                 prefixCls='jobot-forms-rc-select'
                                 onChange={value => {
+                                    this.setState({ pdaLanguage: value });
+                                    localStorage.setItem('formPdaLanguage', value);
+                                }}
+                                options={LANGUAGES_OPTIONS}
+                                value={this.state.pdaLanguage}
+                                allowClear
+                            />
+                        </div>
+                        <div className='language-select'>
+                            <ReactSelect
+                                prefixCls='jobot-forms-rc-select'
+                                onChange={value => {
                                     this.setState({ languageOrigin: value });
                                     localStorage.setItem('formLanguageOrigin', value);
                                 }}
                                 options={LANGUAGES_OPTIONS}
                                 value={this.state.languageOrigin}
+                                allowClear
                             />
                         </div>
                     </div>
@@ -233,6 +247,7 @@ class AppForm extends Component {
                                 postFileUrl={`${POST_FILE}/${vacancy.id}`}
                                 getFileUrl={id => `${GET_FILE}/${id}`}
                                 language={this.state.language}
+                                pdaLanguage={this.state.pdaLanguage}
                                 languageOrigin={this.state.languageOrigin}
                                 components={components}
                                 htmlOpd={htmlOpd}

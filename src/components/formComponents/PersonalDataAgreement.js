@@ -2,7 +2,7 @@ import React, { Component, Fragment } from 'react';
 import Modal from 'react-responsive-modal';
 import { withTranslation } from 'react-i18next';
 import { FormSpy } from 'react-final-form';
-import { filter, find, map, path, pathOr, prop, propEq, pick } from 'ramda';
+import { filter, find, map, path, pathOr, prop, pick } from 'ramda';
 
 import { Checkbox } from './Checkbox';
 import styles from '../../styles/index.module.css';
@@ -27,7 +27,7 @@ const getConstructorOpd = (opdSettings, pdaLanguage, language) => {
             case 'opdCheckbox':
                 return `${res}<div>
                     <input type="checkbox" id="${cur.opdType}" name="${cur.opdType}" data-separate-field="${cur.opdType}" ${path([cur.opdType, 'required'], opdSettings) ? 'required="required"' : ''} />
-                    <label for="${cur.opdType}">${pathOr('', [cur.opdType, 'translations', pdaLanguage], opdSettings) || pathOr('', [cur.opdType, 'translations', language], opdSettings) || pathOr('', [cur.opdType, 'label'], opdSettings)}</label>
+                    <label for="${cur.opdType}">${pathOr('', ['translations', pdaLanguage], cur) || pathOr('', ['translations', language], cur) || pathOr('', [cur.opdType, 'translations', language], opdSettings) || pathOr('', [cur.opdType, 'label'], opdSettings)}</label>
                 </div>`;
             default:
                 return res;

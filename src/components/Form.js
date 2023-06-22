@@ -59,8 +59,8 @@ class Form extends Component {
     constructor(props) {
         super(props);
 
-        const pdaLanguage = props.pdaLanguage || props.language || RU;
         const language = head((props.language || RU).split('-'));
+        const pdaLanguage = props.pdaLanguage || language || RU;
 
         this.state = {
             language,
