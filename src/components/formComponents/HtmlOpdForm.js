@@ -86,12 +86,6 @@ const commonStyle = `
     .opd-html-form > div p + p {
         display: block;
     }
-    @media screen and (max-width: 991px) {
-        .opd-html-form input[type="checkbox"]:checked:before {
-            left: 6px;
-            top: 3px;
-        }
-    }
 `;
 
 export const getHtml = (body, customStyles) => `
