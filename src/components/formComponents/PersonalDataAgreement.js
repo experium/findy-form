@@ -16,18 +16,18 @@ const getConstructorOpd = (opdSettings, pdaLanguage, language) => {
     const text = (opdConstructor || []).reduce((res, cur) => {
         switch (cur.type) {
             case 'question':
-                return `${res}<input name="${cur.question}" placeholder="${path(['translations', language], cur) || cur.placeholder || ''}" type="text" ${cur.required ? 'required' : ''} /> `;
+                return `${res}<input name="${cur.question}" placeholder="${path(['translations', pdaLanguage], cur) || path(['translations', language], cur) || cur.placeholder || ''}" type="text" ${cur.required ? 'required' : ''} /> `;
             case 'formated':
-                return res + (path(['translations', pdaLanguage], cur) || cur.text || '');
+                return res + (path(['translations', pdaLanguage], cur) || path(['translations', language], cur) || cur.text || '');
             case 'checkbox':
                 return `${res}<div>
                     <input type="checkbox" id="${`checkbox-${cur.id}`}" ${cur.required ? 'required="required"' : ''} />
-                    <label for="${`checkbox-${cur.id}`}">${path(['translations', pdaLanguage], cur) || cur.label || ''}</label>
+                    <label for="${`checkbox-${cur.id}`}">${path(['translations', pdaLanguage], cur) || path(['translations', language], cur) || cur.label || ''}</label>
                 </div>`;
             case 'opdCheckbox':
                 return `${res}<div>
                     <input type="checkbox" id="${cur.opdType}" name="${cur.opdType}" data-separate-field="${cur.opdType}" ${path([cur.opdType, 'required'], opdSettings) ? 'required="required"' : ''} />
-                    <label for="${cur.opdType}">${pathOr('', [cur.opdType, 'translations', language], opdSettings) || pathOr('', [cur.opdType, 'label'], opdSettings)}</label>
+                    <label for="${cur.opdType}">${pathOr('', [cur.opdType, 'translations', pdaLanguage], opdSettings) || pathOr('', [cur.opdType, 'translations', language], opdSettings) || pathOr('', [cur.opdType, 'label'], opdSettings)}</label>
                 </div>`;
             default:
                 return res;
@@ -61,15 +61,15 @@ class PersonalDataAgreementComponent extends Component {
     closeHtml = () => this.setState({ openedHtml: false });
 
     getLabel = () => {
-        const { t, renderOpdLabel, opd, opdSettings, language } = this.props;
+        const { t, renderOpdLabel, opd, opdSettings, pdaLanguage, language } = this.props;
         const label = t('opdLabelCustom');
         const modalLinkProps = {
             className: opd ? styles.formLink : styles.withoutOpd,
             onClick: this.open
         };
-        const linkText = pathOr(pathOr(t('opdLink'), ['labelLink'], opdSettings), ['translations', 'labelLink', language], opdSettings);
-        const link = pathOr(path(['link'], opdSettings), ['translations', 'link', language], opdSettings);
-        const opdText = pathOr(opd, ['translations', 'text', language], opdSettings);
+        const linkText = path(['translations', 'labelLink', pdaLanguage], opdSettings) || pathOr(pathOr(t('opdLink'), ['labelLink'], opdSettings), ['translations', 'labelLink', language], opdSettings);
+        const link = path(['translations', 'link', pdaLanguage], opdSettings) || pathOr(path(['link'], opdSettings), ['translations', 'link', language], opdSettings);
+        const opdText = pathOr(['translations', 'text', pdaLanguage], opdSettings) || pathOr(opd, ['translations', 'text', language], opdSettings);
         const opdType = pathOr('modal', ['linkType'], opdSettings);
 
         return <span>
@@ -78,14 +78,14 @@ class PersonalDataAgreementComponent extends Component {
                     label
                 ) : (
                     <Fragment>
-                        { pathOr(pathOr(t('opdLabel'), ['labelStart'], opdSettings), ['translations', 'labelStart', language], opdSettings) }
+                        { path(['translations', 'labelStart', pdaLanguage], opdSettings) || pathOr(pathOr(t('opdLabel'), ['labelStart'], opdSettings), ['translations', 'labelStart', language], opdSettings) }
                         { ' ' }
                         { opdType === 'modal' ?
                             <span {...modalLinkProps}>{ linkText }</span> :
                             <a href={`//${link}`} target='_blank'>{ linkText }</a>
                         }
                         { ' ' }
-                        { pathOr(pathOr('.', ['labelEnd'], opdSettings), ['translations', 'labelEnd', language], opdSettings) }
+                        { path(['translations', 'labelEnd', pdaLanguage], opdSettings) || pathOr(pathOr('.', ['labelEnd'], opdSettings), ['translations', 'labelEnd', language], opdSettings) }
                     </Fragment>
                 )
             }
@@ -196,7 +196,10 @@ class PersonalDataAgreementComponent extends Component {
                                         htmlAttrs={htmlAttrs}
                                         html={this.props.htmlOpd || constructorOpd}
                                         htmlOpdStyles={this.props.htmlOpdStyles}
-                                        acceptBtn={pathOr(path(['acceptButtonLabel'], opdSettings), ['translations', 'acceptButtonLabel', language], opdSettings)} />
+                                        acceptBtn={
+                                            path(['translations', 'acceptButtonLabel', pdaLanguage], opdSettings)
+                                            || pathOr(path(['acceptButtonLabel'], opdSettings), ['translations', 'acceptButtonLabel', language], opdSettings)
+                                        } />
                                 )}
                             </FormSpy>
                         </Modal>
