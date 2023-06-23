@@ -67,9 +67,9 @@ class PersonalDataAgreementComponent extends Component {
             className: opd ? styles.formLink : styles.withoutOpd,
             onClick: this.open
         };
-        const linkText = path(['translations', 'labelLink', pdaLanguage], opdSettings) || pathOr(pathOr(t('opdLink'), ['labelLink'], opdSettings), ['translations', 'labelLink', language], opdSettings);
-        const link = path(['translations', 'link', pdaLanguage], opdSettings) || pathOr(path(['link'], opdSettings), ['translations', 'link', language], opdSettings);
-        const opdText = pathOr(['translations', 'text', pdaLanguage], opdSettings) || pathOr(opd, ['translations', 'text', language], opdSettings);
+        const linkText = path(['data', 'translations', 'labelLink', pdaLanguage], opdSettings) || pathOr(pathOr(t('opdLink'), ['labelLink'], opdSettings), ['translations', 'labelLink', language], opdSettings);
+        const link = path(['data', 'translations', 'link', pdaLanguage], opdSettings) || pathOr(path(['link'], opdSettings), ['translations', 'link', language], opdSettings);
+        const opdText = pathOr(['data', 'translations', 'text', pdaLanguage], opdSettings) || pathOr(opd, ['translations', 'text', language], opdSettings);
         const opdType = pathOr('modal', ['linkType'], opdSettings);
 
         return <span>
@@ -78,14 +78,14 @@ class PersonalDataAgreementComponent extends Component {
                     label
                 ) : (
                     <Fragment>
-                        { path(['translations', 'labelStart', pdaLanguage], opdSettings) || pathOr(pathOr(t('opdLabel'), ['labelStart'], opdSettings), ['translations', 'labelStart', language], opdSettings) }
+                        { path(['data', 'translations', 'labelStart', pdaLanguage], opdSettings) || pathOr(pathOr(t('opdLabel'), ['labelStart'], opdSettings), ['translations', 'labelStart', language], opdSettings) }
                         { ' ' }
                         { opdType === 'modal' ?
                             <span {...modalLinkProps}>{ linkText }</span> :
                             <a href={`//${link}`} target='_blank'>{ linkText }</a>
                         }
                         { ' ' }
-                        { path(['translations', 'labelEnd', pdaLanguage], opdSettings) || pathOr(pathOr('.', ['labelEnd'], opdSettings), ['translations', 'labelEnd', language], opdSettings) }
+                        { path(['data', 'translations', 'labelEnd', pdaLanguage], opdSettings) || pathOr(pathOr('.', ['labelEnd'], opdSettings), ['translations', 'labelEnd', language], opdSettings) }
                     </Fragment>
                 )
             }
@@ -197,7 +197,7 @@ class PersonalDataAgreementComponent extends Component {
                                         html={this.props.htmlOpd || constructorOpd}
                                         htmlOpdStyles={this.props.htmlOpdStyles}
                                         acceptBtn={
-                                            path(['translations', 'acceptButtonLabel', pdaLanguage], opdSettings)
+                                            path(['data', 'translations', 'acceptButtonLabel', pdaLanguage], opdSettings)
                                             || pathOr(path(['acceptButtonLabel'], opdSettings), ['translations', 'acceptButtonLabel', language], opdSettings)
                                         } />
                                 )}
