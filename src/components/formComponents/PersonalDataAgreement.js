@@ -69,7 +69,7 @@ class PersonalDataAgreementComponent extends Component {
         };
         const linkText = path(['data', 'translations', 'labelLink', pdaLanguage], opdSettings) || pathOr(pathOr(t('opdLink'), ['labelLink'], opdSettings), ['translations', 'labelLink', language], opdSettings);
         const link = path(['data', 'translations', 'link', pdaLanguage], opdSettings) || pathOr(path(['link'], opdSettings), ['translations', 'link', language], opdSettings);
-        const opdText = pathOr(['data', 'translations', 'text', pdaLanguage], opdSettings) || pathOr(opd, ['translations', 'text', language], opdSettings);
+        const opdText = path(['data', 'translations', 'text', pdaLanguage], opdSettings) || pathOr(opd, ['translations', 'text', language], opdSettings);
         const opdType = pathOr('modal', ['linkType'], opdSettings);
 
         return <span>
