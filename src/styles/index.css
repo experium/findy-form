@@ -128,6 +128,15 @@ body .rc-checkbox:hover .rc-checkbox-inner, body .rc-checkbox-input:focus + .rc-
 }
 
 /* Modal */
+.file-modal image, .file-modal video {
+    width: 100%;
+}
+@media screen and (max-width: 700px) {
+    .file-modal {
+        width: 100%;
+    }
+}
+
 .pda-modal {
     min-width: 50%;
 }

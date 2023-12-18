@@ -335,7 +335,7 @@ class File extends Component {
                     open={this.state.visibleModal}
                     onClose={this.closeModal}
                     classNames={{
-                        modal: 'modal',
+                        modal: 'modal file-modal',
                         closeButton: 'modalCloseButton',
                     }}
                 >
