@@ -5,9 +5,9 @@ import { withTranslation } from 'react-i18next';
 import getusermedia from 'getusermedia';
 
 import withFieldWrapper from '../hocs/withFieldWrapper';
-import ImageFile from './ImageFile';
-import VideoFile from './VideoFile';
-import AudioFile from './AudioFile';
+import ImageFile, { IMAGE_WEB_NAME } from './ImageFile';
+import VideoFile, { VIDEO_WEB_NAME } from './VideoFile';
+import AudioFile, { AUDIO_WEB_NAME } from './AudioFile';
 import styles from '../../styles/index.module.css';
 import formStyles from '../../styles/index.module.css';
 import Spinner from './Spinner';
@@ -59,7 +59,7 @@ class File extends Component {
             const fileType = file.type || path([type, fileExtenstion], defaultAllowFileExtensions);
             const validFileType = checkFileType(type, file.type, fileExtenstion, allowFileExtensions);
 
-            fd.append('file', file);
+            fd.append('file', file, file.name);
             fd.append('name', file.name);
 
             if (validFileType) {
@@ -209,7 +209,7 @@ class File extends Component {
     renderPreview = (url, index, type) => {
         const { input: { name } } = this.props;
         const fileName = path(['fileNames', name, index], this.state);
-        const isBlob = fileName === 'blob';
+        const isBlob = fileName === 'blob' || fileName === IMAGE_WEB_NAME || fileName === VIDEO_WEB_NAME  || fileName === AUDIO_WEB_NAME;
 
         switch (type) {
             case FILE_TYPES.image:

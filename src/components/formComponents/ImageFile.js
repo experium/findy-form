@@ -5,6 +5,8 @@ import { withTranslation } from 'react-i18next';
 import styles from '../../styles/index.module.css';
 import { dataURItoBlob } from '../../utils/file';
 
+export const IMAGE_WEB_NAME = 'webcam.jpeg';
+
 class ImageFile extends Component {
     state = {
         image: null
@@ -15,7 +17,7 @@ class ImageFile extends Component {
     cancel = () => this.setState({ image: null });
 
     save = () => {
-        this.props.onChange(dataURItoBlob(this.state.image, 'webcam.jpeg'));
+        this.props.onChange(dataURItoBlob(this.state.image, IMAGE_WEB_NAME));
     }
 
     render() {

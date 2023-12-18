@@ -5,6 +5,8 @@ import { withTranslation } from 'react-i18next';
 import styles from '../../styles/index.module.css';
 import MediaLength from './MediaLength';
 
+export const VIDEO_WEB_NAME = 'video.webm';
+
 const videoConstraints = {
     width: 640,
     height: 480,
@@ -25,7 +27,10 @@ class VideoFile extends Component {
 
     onUserMedia = () => {
         this.recorder = new MediaRecorder(this.webcam.stream);
-        this.recorder.ondataavailable = ({ data }) => this.setState({ data });
+        this.recorder.ondataavailable = ({ data }) => {
+            data.name = VIDEO_WEB_NAME;
+            this.setState({ data });
+        };
     }
 
     start = () => {

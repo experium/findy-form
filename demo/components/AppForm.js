@@ -232,7 +232,8 @@ class AppForm extends Component {
                                 onSubmit={form => {
                                     mutation({
                                         variables: {
-                                            form, vacancy: match.params.id
+                                            form,
+                                            vacancy: match.params.id,
                                         },
                                         context: {
                                             headers: {

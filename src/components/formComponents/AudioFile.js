@@ -5,6 +5,8 @@ import { withTranslation } from 'react-i18next';
 import MediaLength from './MediaLength';
 import styles from '../../styles/index.module.css';
 
+export const AUDIO_WEB_NAME = 'audio.webm';
+
 class AudioFile extends Component {
     constructor(props) {
         super(props);
@@ -30,7 +32,10 @@ class AudioFile extends Component {
 
     start = () => this.recorder.start().then(() => this.setState({ recording: true }));
 
-    stop = () => this.recorder.stop().then(({ blob }) => this.setState({ recording: false, audio: blob }));
+    stop = () => this.recorder.stop().then(({ blob }) => {
+        blob.name = AUDIO_WEB_NAME;
+        this.setState({ recording: false, audio: blob });
+    });
 
     render() {
         const { available, t, disabled } = this.props;
