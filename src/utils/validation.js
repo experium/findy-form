@@ -55,7 +55,7 @@ export const validateLink = (field, values) => {
     } else {
         const linkedValue = path(split('.', `${linkField}`), values);
 
-        return linkValue === linkedValue;
+        return linkValue === linkedValue ? field.required : false;
     }
 };
 
