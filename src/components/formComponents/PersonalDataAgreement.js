@@ -42,6 +42,7 @@ const getConstructorOpd = (opdSettings, pdaLanguage, language) => {
 class PersonalDataAgreementComponent extends Component {
     state = {
         opened: false,
+        openedAdditional: false,
         openedHtml: false
     };
 
@@ -58,6 +59,15 @@ class PersonalDataAgreementComponent extends Component {
 
     close = () => this.setState({ opened: false });
 
+    openAdditional = event => {
+        if (this.props.opd) {
+            event.preventDefault();
+            this.setState({ openedAdditional: true });
+        }
+    }
+
+    closeAdditional = () => this.setState({ openedAdditional: false });
+
     closeHtml = () => this.setState({ openedHtml: false });
 
     getLabel = () => {
@@ -66,11 +76,19 @@ class PersonalDataAgreementComponent extends Component {
         const modalLinkProps = {
             className: opd ? styles.formLink : styles.withoutOpd,
             onClick: this.open
+        }; const modalLinkAdditionalProps = {
+            className: opd ? styles.formLink : styles.withoutOpd,
+            onClick: this.openAdditional
         };
         const linkText = path(['data', 'translations', 'labelLink', pdaLanguage], opdSettings) || pathOr(pathOr(t('opdLink'), ['labelLink'], opdSettings), ['translations', 'labelLink', language], opdSettings);
         const link = path(['data', 'translations', 'link', pdaLanguage], opdSettings) || pathOr(path(['link'], opdSettings), ['translations', 'link', language], opdSettings);
         const opdText = path(['data', 'translations', 'text', pdaLanguage], opdSettings) || pathOr(opd, ['translations', 'text', language], opdSettings);
         const opdType = pathOr('modal', ['linkType'], opdSettings);
+
+        const opdTypeAdditional = pathOr('modal', ['linkTypeAdditional'], opdSettings);
+        const linkTextAdditional = path(['data', 'translations', 'labelAdditionalLink', pdaLanguage], opdSettings) || pathOr(pathOr(t('opdLink'), ['labelAdditionalLink'], opdSettings), ['translations', 'labelAdditionalLink', language], opdSettings);
+        const linkAdditional = path(['data', 'translations', 'linkAdditional', pdaLanguage], opdSettings) || pathOr(path(['linkAdditional'], opdSettings), ['translations', 'linkAdditional', language], opdSettings);
+        const opdTextAdditional = path(['data', 'translations', 'textAdditional', pdaLanguage], opdSettings) || pathOr(path(['textAdditional'], opdSettings), ['translations', 'textAdditional', language], opdSettings);
 
         return <span>
             { renderOpdLabel ? renderOpdLabel(modalLinkProps) :
@@ -85,7 +103,22 @@ class PersonalDataAgreementComponent extends Component {
                             <a href={`//${link}`} target='_blank'>{ linkText }</a>
                         }
                         { ' ' }
-                        { path(['data', 'translations', 'labelEnd', pdaLanguage], opdSettings) || pathOr(pathOr('.', ['labelEnd'], opdSettings), ['translations', 'labelEnd', language], opdSettings) }
+                        { path(['data', 'translations', 'labelEnd', pdaLanguage], opdSettings)
+                            || pathOr(pathOr(opdTypeAdditional ? '' : '.', ['labelEnd'], opdSettings), ['translations', 'labelEnd', language], opdSettings) }
+                        { opdTypeAdditional ? (
+                            <Fragment>
+                                { path(['data', 'translations', 'labelAdditionalStart', pdaLanguage], opdSettings) || pathOr(pathOr(t('opdLabel'), ['labelAdditionalStart'], opdSettings), ['translations', 'labelAdditionalStart', language], opdSettings) }
+                                { ' ' }
+                                { opdTypeAdditional === 'modal' ?
+                                    <span {...modalLinkAdditionalProps}>{ linkTextAdditional }</span> :
+                                    <a href={`//${linkAdditional}`} target='_blank'>{ linkTextAdditional }</a>
+                                }
+                                { ' ' }
+                                { path(['data', 'translations', 'labelAdditionalEnd', pdaLanguage], opdSettings)
+                                    || pathOr(pathOr('.', ['labelAdditionalEnd'], opdSettings), ['translations', 'labelAdditionalEnd', language], opdSettings) }
+
+                            </Fragment>
+                        ) : null}
                     </Fragment>
                 )
             }
@@ -99,6 +132,17 @@ class PersonalDataAgreementComponent extends Component {
                 center
             >
                 <div dangerouslySetInnerHTML={{ __html: opdText }} />
+            </Modal>
+            <Modal
+                open={this.state.openedAdditional}
+                onClose={this.closeAdditional}
+                classNames={{
+                    modal: 'pda-modal',
+                    closeButton: 'pda-modal-close-button',
+                }}
+                center
+            >
+                <div dangerouslySetInnerHTML={{ __html: opdTextAdditional }} />
             </Modal>
         </span>;
     }
